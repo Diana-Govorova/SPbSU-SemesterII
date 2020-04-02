@@ -63,13 +63,13 @@ namespace Task2
         /// Change size of hash table.
         /// </summary>
         /// <param name="size"></param>
-        private void ReSize(int size)
+        private void ReSize(int newSize)
         {
-            if (size <= 0)
+            if (newSize <= 0)
             {
                 throw new InvalidOperationException("Size < 0");
             }
-            var temporaryHashTable = new LinkedList[size];
+            var temporaryHashTable = new LinkedList[newSize];
             for (int i = 0; i < temporaryHashTable.Length; i++)
             {
                 temporaryHashTable[i] = new LinkedList();
@@ -84,7 +84,7 @@ namespace Task2
                 var temporaryNodes = hashTable[i].ReturnAllNodes();
                 foreach (var item in temporaryNodes)
                 {
-                    temporaryHashTable[CalculateHash(item, temporaryHashTable.Length)].AddNodeByPosition(1, item);
+                    temporaryHashTable[CalculateHash(item)].AddNodeByPosition(1, item);
                 }
             }
             hashTable = temporaryHashTable;
@@ -97,9 +97,9 @@ namespace Task2
         /// <param name="str">Input string.</param>
         /// <param name="size">Size of hash table</param>
         /// <returns></returns>
-        private int CalculateHash(string str, int size)
+        private int CalculateHash(string str)
         {
-            return Calculate(str, size);
+            return this.hashFunction.Calculate(str, size);
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace Task2
         /// Changes hash function.
         /// </summary>
         /// <param name="hash">Hash to be changed to.</param>
-        public void ChangeHashFunction(IHashFunction calculte)
+        public void ChangeHashFunction(IHashFunction newHashFunction)
         {
-            this.calculate = calculate;
+            this.hashFunction = newHashFunction;
             ReSize(size);
         }
 
@@ -132,7 +132,7 @@ namespace Task2
         /// <returns>Hash value of input string.</returns>
         public int GetHash(string str)
         {
-            return Calculate(str, size);
+            return this.hashFunction.Calculate(str, size);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Task2
         /// <param name="str">Input string.</param>
         private void AddHashValue(string str)
         {
-            int hashValue = CalculateHash(str, size);
+            int hashValue = CalculateHash(str);
             hashTable[hashValue].AddNodeByPosition(1, str);
         }
 
@@ -169,7 +169,7 @@ namespace Task2
         /// <returns>Whether the removal was successful.</returns>
         public bool DeleteValue(string str)
         {
-            var hashValue = CalculateHash(str, size);
+            var hashValue = CalculateHash(str);
             var valueForDelete = hashTable[hashValue].DeleteValueByValue(str);
             if (valueForDelete)
             {
@@ -186,7 +186,8 @@ namespace Task2
         /// <returns>Indicates if the string is present in the hash table or not.</returns>
         public bool HashContains(string str)
         {
-            var hashValue = CalculateHash(str, size);
+            var hashValue = CalculateHash(str
+                );
             return hashTable[hashValue].Contains(str);
         }
 

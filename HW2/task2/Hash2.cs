@@ -15,7 +15,12 @@ namespace Task2
         public int Calculate(string str, int size)
         {
             int result = 0;
-            result = Convert.ToInt32(str) * 13 % size;
+            foreach (var symbol in str)
+            {
+                result *= 13;
+                result += (byte)symbol;
+            }
+            result = result % size;
             return Math.Abs(result);
         }
     }
