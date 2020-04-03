@@ -79,6 +79,7 @@ namespace Task1
             if (position == 1)
             {
                 head = head.Next;
+                size--;
                 return true;
             }
             var currentNode = head;
