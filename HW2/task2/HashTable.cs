@@ -126,16 +126,6 @@ namespace Task2
         }
 
         /// <summary>
-        /// Calculates hash of the input string and returns it.
-        /// </summary>
-        /// <param name="str">Input string.</param>
-        /// <returns>Hash value of input string.</returns>
-        public int GetHash(string str)
-        {
-            return this.hashFunction.Calculate(str, size);
-        }
-
-        /// <summary>
         /// Add the hash of a string to the hash table.
         /// </summary>
         /// <param name="str">Input string.</param>
