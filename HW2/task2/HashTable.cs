@@ -186,8 +186,7 @@ namespace Task2
         /// <returns>Indicates if the string is present in the hash table or not.</returns>
         public bool HashContains(string str)
         {
-            var hashValue = CalculateHash(str
-                );
+            var hashValue = CalculateHash(str);
             return hashTable[hashValue].Contains(str);
         }
 

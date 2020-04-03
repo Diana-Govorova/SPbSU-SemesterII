@@ -108,7 +108,7 @@ namespace Task2
         {
             if (IsEmpty())
             {
-                return;
+                throw new ArgumentException("There's no element with input position.");
             }
             if (position == 1)
             {
@@ -164,7 +164,27 @@ namespace Task2
 
         public bool DeleteValueByValue(string str)
         {
+            if (IsEmpty())
+            {
+                Console.WriteLine("List is empty");
+                return false;
+            }
             var currentNode = head;
+            if (currentNode.Next == null)
+            {
+                if (currentNode.Value.Equals(str))
+                {
+                    currentNode = currentNode.Next;
+                    size--;
+                    Console.WriteLine("String was deleted.");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("String isnt found.");
+                    return false;
+                }
+            }
             var nextNode = head.Next;
             while (nextNode != null)
             {
@@ -172,11 +192,13 @@ namespace Task2
                 {
                     currentNode.Next = nextNode.Next;
                     size--;
+                    Console.WriteLine("String was deleted.");
                     return true;
                 }
                 currentNode = nextNode.Next;
                 nextNode = nextNode.Next;
             }
+            Console.WriteLine("String isnt found.");
             return false;
         }
 
@@ -192,10 +214,12 @@ namespace Task2
             {
                 if (current.Value.Equals(str))
                 {
+                    Console.WriteLine("String is found.");
                     return true;
                 }
                 current = current.Next;
             }
+            Console.WriteLine("String isnt found.");
             return false;
         }
 
