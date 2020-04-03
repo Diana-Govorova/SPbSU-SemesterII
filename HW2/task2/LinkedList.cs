@@ -44,6 +44,9 @@ namespace Task2
             {
                 head = new Node();
                 head.Value = value;
+                head.Next = null;
+                size++;
+                return;
             }
             if (position == 1)
             {
@@ -51,6 +54,8 @@ namespace Task2
                 var temporaryNode = head;
                 head = addedNode;
                 head.Next = temporaryNode;
+                size++;
+                return;
             }
             var CurrentNode = head;
             var NextNode = head.Next;
@@ -78,6 +83,7 @@ namespace Task2
             if (position == 1)
             {
                 head = head.Next;
+                size--;
                 return true;
             }
             var currentNode = head;
@@ -164,41 +170,28 @@ namespace Task2
 
         public bool DeleteValueByValue(string str)
         {
-            if (IsEmpty())
-            {
-                Console.WriteLine("List is empty");
-                return false;
-            }
             var currentNode = head;
-            if (currentNode.Next == null)
+            Node previousNode = null;
+
+            while (currentNode != null)
             {
                 if (currentNode.Value.Equals(str))
                 {
-                    currentNode = currentNode.Next;
+                    if (previousNode != null)
+                    {
+                        previousNode.Next = currentNode.Next;
+                    }
+                    else
+                    {
+                        head = head.Next;
+                    }
                     size--;
-                    Console.WriteLine("String was deleted.");
                     return true;
                 }
-                else
-                {
-                    Console.WriteLine("String isnt found.");
-                    return false;
-                }
+
+                previousNode = currentNode;
+                currentNode = currentNode.Next;
             }
-            var nextNode = head.Next;
-            while (nextNode != null)
-            {
-                if (currentNode.Next.Value.Equals(str))
-                {
-                    currentNode.Next = nextNode.Next;
-                    size--;
-                    Console.WriteLine("String was deleted.");
-                    return true;
-                }
-                currentNode = nextNode.Next;
-                nextNode = nextNode.Next;
-            }
-            Console.WriteLine("String isnt found.");
             return false;
         }
 

@@ -41,7 +41,7 @@ namespace Task2
         /// <param name="hashFunction"></param>
         public HashTable(IHashFunction hashFunction)
         {
-            size = 20;
+            size = 5;
             InitializeHashTable();
             this.hashFunction = hashFunction;
         }
