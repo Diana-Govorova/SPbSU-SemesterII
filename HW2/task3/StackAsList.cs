@@ -14,8 +14,8 @@ namespace Task3
             private string element;
             private Node next;
 
-            public string Element { get => element; set => this.element = element; }
-            public Node Next { get => next; set => next = element; }
+            public string Element { get => element; set => this.element = value; }
+            public Node Next { get => next; set => next = value; }
         }
 
         /// <summary>
