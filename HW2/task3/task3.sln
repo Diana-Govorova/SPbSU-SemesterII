@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task3", "task3.csproj", "{0D20F189-8F11-44C2-B922-EA5B6B716450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task3", "task3.csproj", "{0D20F189-8F11-44C2-B922-EA5B6B716450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayCalculatorTest", "..\ArrayCalculatorTest\ArrayCalculatorTest.csproj", "{8D66A231-CE06-4E48-BE49-82A4D1044C46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D20F189-8F11-44C2-B922-EA5B6B716450} = {0D20F189-8F11-44C2-B922-EA5B6B716450}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{0D20F189-8F11-44C2-B922-EA5B6B716450}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D20F189-8F11-44C2-B922-EA5B6B716450}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D20F189-8F11-44C2-B922-EA5B6B716450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D66A231-CE06-4E48-BE49-82A4D1044C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D66A231-CE06-4E48-BE49-82A4D1044C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D66A231-CE06-4E48-BE49-82A4D1044C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D66A231-CE06-4E48-BE49-82A4D1044C46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
