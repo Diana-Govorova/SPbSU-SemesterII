@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Task3
 {
-    class StackAsArray : IStack
+    public class StackAsArray : IStack
     {
         /// <summary>
         /// Array of elements.
