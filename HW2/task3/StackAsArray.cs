@@ -104,7 +104,7 @@ namespace Task3
         /// </summary>
         public void Clear()
         {
-            elements = new string[n];
+            elements = new string[length];
             count = 0;
         }
     }

@@ -41,7 +41,8 @@ namespace Task3
         /// <param name="element">Element for adding to  stack.</param>
         public void Push(string element)
         {
-            var node = new Node(element);
+            var node = new Node();
+            node.Element = element;
             node.Next = head;
             head = node;
             size++;
