@@ -129,7 +129,7 @@ namespace Task2
         /// Add the hash of a string to the hash table.
         /// </summary>
         /// <param name="str">Input string.</param>
-        private void AddHashValue(string str)
+        public void AddHashValue(string str)
         {
             int hashValue = CalculateHash(str);
             hashTable[hashValue].AddNodeByPosition(1, str);
