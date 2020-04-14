@@ -7,7 +7,7 @@ namespace Task2
     /// <summary>
     /// Class with an exception thrown if an attempt is made to add an existing item to the list.
     /// </summary>
-    public class DeleteNonexistentItemException : Exception
+    public class DeleteNonexistentItemException : System.Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteNonexistentItemException"/> class.
