@@ -5,7 +5,7 @@ namespace Task1
 {
     public class LinkedListTests
     {
-        LinkedList linkedList;
+        private LinkedList linkedList;
 
         [SetUp]
         public void Setup()
@@ -53,7 +53,7 @@ namespace Task1
             linkedList.AddNodeByPosition(1, 10);
             linkedList.AddNodeByPosition(2, 15);
             linkedList.ChangeNodeValueByPosition(2, 20);
-            Assert.AreEqual(linkedList.GetNodeValueByPosition(2), 20);
+            Assert.AreEqual(20, linkedList.GetNodeValueByPosition(2));
         }
     }
 }
