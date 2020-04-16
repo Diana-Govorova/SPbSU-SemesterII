@@ -12,11 +12,23 @@ namespace Task1
         /// </summary>
         private class Node // LinkedList's element
         {
-            private int value;
-            private Node next;
+            public Node(int value)
+            {
+                this.value = value;
+            }
 
-            public int Value { get => value; set => this.value = value; }
-            public Node Next { get => next; set => next = value; }
+            private int value;
+
+            public int Value
+            {
+                get => value;
+                set => this.value = value;
+            }
+            public Node Next
+            {
+                get;
+                set;
+            }
         }
 
         private Node head;
@@ -36,16 +48,17 @@ namespace Task1
         /// <param name="value">Node's value.</param>
         public void AddNodeByPosition(int position, int value)
         {
-            var addedNode = new Node();
             if (IsEmpty())
             {
                 head = new Node();
                 head.Value = value;
-            }
-            if (position < 0)
-            {
                 return;
             }
+            if (position <= 0)
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+            var addedNode = new Node();
             if (position == 1)
             {
                 addedNode.Value = value;
@@ -53,16 +66,16 @@ namespace Task1
                 head = addedNode;
                 head.Next = temporaryNode;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
             addedNode.Value = value;
-            CurrentNode.Next = addedNode;
-            addedNode.Next = NextNode;
+            currentNode.Next = addedNode;
+            addedNode.Next = nextNode;
             size++;
         }
 
@@ -75,6 +88,10 @@ namespace Task1
             if (IsEmpty())
             {
                 throw new InvalidOperationException("Cannot delete, list is empty!");
+            }
+            if (position <= 0)
+            {
+                throw new InvalidOperationException("Invalid position");
             }
             if (position == 1)
             {
