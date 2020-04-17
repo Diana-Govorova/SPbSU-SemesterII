@@ -23,6 +23,7 @@ namespace Task2
                 get => value;
                 set => this.value = value;
             }
+
             public Node Next
             {
                 get => next;
@@ -47,7 +48,6 @@ namespace Task2
         /// <param name="value">Node's value.</param>
         public void AddNodeByPosition(int position, string value)
         {
-            var addedNode = new Node();
             if (IsEmpty())
             {
                 head = new Node();
@@ -56,6 +56,7 @@ namespace Task2
                 size++;
                 return;
             }
+            var addedNode = new Node();
             if (position == 1)
             {
                 addedNode.Value = value;
@@ -65,16 +66,16 @@ namespace Task2
                 size++;
                 return;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
             addedNode.Value = value;
-            CurrentNode.Next = addedNode;
-            addedNode.Next = NextNode;
+            currentNode.Next = addedNode;
+            addedNode.Next = nextNode;
             size++;
         }
 
@@ -135,6 +136,7 @@ namespace Task2
             if (position == 1)
             {
                 head.Value = value;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;

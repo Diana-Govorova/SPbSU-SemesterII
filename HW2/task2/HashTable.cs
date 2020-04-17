@@ -65,9 +65,9 @@ namespace Task2
         /// <param name="size"></param>
         private void ReSize(int newSize)
         {
-            if (newSize < 0)
+            if (newSize <= 0)
             {
-                throw new InvalidOperationException("Size < 0");
+                throw new InvalidOperationException("Size <= 0");
             }
             var temporaryHashTable = new LinkedList[newSize];
             for (int i = 0; i < temporaryHashTable.Length; i++)
@@ -131,7 +131,7 @@ namespace Task2
         /// Add the hash of a string to the hash table.
         /// </summary>
         /// <param name="str">Input string.</param>
-        public void AddHashValue(string str)
+        private void AddHashValue(string str)
         {
             int hashValue = CalculateHash(str);
             hashTable[hashValue].AddNodeByPosition(1, str);

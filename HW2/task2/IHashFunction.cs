@@ -13,7 +13,7 @@ namespace Task2
         /// Hash function.
         /// </summary>
         /// <param name="str">String to be hashed.</param>
-        /// <returns></returns>
+        /// <returns>Hash value of input string.</returns>
         int Calculate(string str);
     }
 }
