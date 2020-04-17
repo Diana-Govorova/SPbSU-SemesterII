@@ -18,8 +18,16 @@ namespace Task2
             private string value;
             private Node next;
 
-            public string Value { get => value; set => this.value = value; }
-            public Node Next { get => next; set => next = value; }
+            public string Value
+            {
+                get => value;
+                set => this.value = value;
+            }
+            public Node Next
+            {
+                get => next;
+                set => next = value;
+            }
         }
 
         private Node head;
@@ -78,7 +86,11 @@ namespace Task2
         {
             if (IsEmpty())
             {
-                return false;
+                throw new ArgumentException("List is empty.");
+            }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
             }
             if (position == 1)
             {
@@ -116,18 +128,22 @@ namespace Task2
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
             if (position == 1)
             {
                 head.Value = value;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            NextNode.Value = value;
+            nextNode.Value = value;
         }
 
         /// <summary>
@@ -141,18 +157,22 @@ namespace Task2
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
             if (position == 1)
             {
                 return head.Value;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            return NextNode.Value;
+            return nextNode.Value;
         }
 
         /// <summary>

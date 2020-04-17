@@ -13,8 +13,7 @@ namespace Task2
         /// Hash function.
         /// </summary>
         /// <param name="str">String to be hashed.</param>
-        /// <param name="size">Current size of hash table.</param>
         /// <returns></returns>
-        int Calculate(string str, int size);
+        int Calculate(string str);
     }
 }

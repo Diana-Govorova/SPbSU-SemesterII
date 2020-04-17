@@ -65,7 +65,7 @@ namespace Task2
         /// <param name="size"></param>
         private void ReSize(int newSize)
         {
-            if (newSize <= 0)
+            if (newSize < 0)
             {
                 throw new InvalidOperationException("Size < 0");
             }
@@ -99,7 +99,9 @@ namespace Task2
         /// <returns></returns>
         private int CalculateHash(string str)
         {
-            return this.hashFunction.Calculate(str, size);
+            int hashValue = this.hashFunction.Calculate(str);
+            hashValue = hashValue % size;
+            return Math.Abs(hashValue);
         }
 
         /// <summary>

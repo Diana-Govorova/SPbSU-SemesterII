@@ -4,19 +4,17 @@ namespace Task2
 {
     class Program
     {
-        public static IHashFunction Input()
+        private static IHashFunction Input()
         {
             Console.WriteLine("Choose the hash method: 0 = Hash1, 1 = Hash2");
             int choice = Convert.ToInt32(Console.ReadLine());
             if (choice == 0)
             {
-                var hash = new Hash1();
-                return hash;
+                return new Hash1();
             }
             else if (choice == 1)
             {
-                var hash = new Hash2();
-                return hash;
+                return new Hash2();
             }
             else
             {
@@ -27,8 +25,7 @@ namespace Task2
 
         static void Main(string[] args)
         {
-            IHashFunction hash;
-            hash = Input();
+            IHashFunction hash = Input();
             var hashTable = new HashTable(hash);
             int command = -1;
             while (true)
