@@ -50,18 +50,16 @@ namespace Task1
         {
             if (IsEmpty())
             {
-                head = new Node();
-                head.Value = value;
+                head = new Node(value);
                 return;
             }
             if (position <= 0)
             {
                 throw new InvalidOperationException("Invalid position");
             }
-            var addedNode = new Node();
+            var addedNode = new Node(value);
             if (position == 1)
             {
-                addedNode.Value = value;
                 var temporaryNode = head;
                 head = addedNode;
                 head.Next = temporaryNode;
@@ -73,7 +71,6 @@ namespace Task1
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
-            addedNode.Value = value;
             currentNode.Next = addedNode;
             addedNode.Next = nextNode;
             size++;
@@ -127,20 +124,24 @@ namespace Task1
         {
             if (IsEmpty())
             {
-                return;
+                throw new InvalidOperationException("List is empty!");
+            }
+            if (position <= 0)
+            {
+                throw new InvalidOperationException("Invalid position");
             }
             if (position == 1)
             {
                 head.Value = value;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            NextNode.Value = value;
+            nextNode.Value = value;
         }
 
         /// <summary>
@@ -154,18 +155,22 @@ namespace Task1
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+            if (position <= 0)
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
             if (position == 1)
             {
                return head.Value;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            return NextNode.Value;
+            return nextNode.Value;
         }
 
         /// <summary>
