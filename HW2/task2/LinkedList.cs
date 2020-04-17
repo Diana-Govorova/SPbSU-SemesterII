@@ -16,7 +16,10 @@ namespace Task2
         private class Node // LinkedList's element
         {
             private string value;
-            private Node next;
+            public Node(string value)
+            {
+                this.value = value;
+            }
 
             public string Value
             {
@@ -26,8 +29,8 @@ namespace Task2
 
             public Node Next
             {
-                get => next;
-                set => next = value;
+                get;
+                set;
             }
         }
 
@@ -50,16 +53,13 @@ namespace Task2
         {
             if (IsEmpty())
             {
-                head = new Node();
-                head.Value = value;
-                head.Next = null;
+                head = new Node(value);
                 size++;
                 return;
             }
-            var addedNode = new Node();
+            var addedNode = new Node(value);
             if (position == 1)
             {
-                addedNode.Value = value;
                 var temporaryNode = head;
                 head = addedNode;
                 head.Next = temporaryNode;
@@ -73,7 +73,6 @@ namespace Task2
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
-            addedNode.Value = value;
             currentNode.Next = addedNode;
             addedNode.Next = nextNode;
             size++;
