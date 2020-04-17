@@ -11,11 +11,24 @@ namespace Task3
         /// </summary>
         private class Node // Stacks's element
         {
-            private string element;
-            private Node next;
+            public Node(float value)
+            {
+                this.element = value;
+            }
 
-            public string Element { get => element; set => this.element = value; }
-            public Node Next { get => next; set => next = value; }
+            private float element;
+            private Node next;
+            
+            public float Element
+            {
+                get => element;
+                set => this.element = value;
+            }
+            public Node Next
+            {
+                get;
+                set;
+            }
         }
 
         /// <summary>
@@ -39,10 +52,9 @@ namespace Task3
         /// Adding element to stack.
         /// </summary>
         /// <param name="element">Element for adding to  stack.</param>
-        public void Push(string element)
+        public void Push(float element)
         {
-            var node = new Node();
-            node.Element = element;
+            var node = new Node(element);
             node.Next = head;
             head = node;
             size++;
@@ -52,7 +64,7 @@ namespace Task3
         /// Returns element from the top of the stack and delete head.
         /// </summary>
         /// <returns>Element from top of the stack.</returns>
-        public string Pop()
+        public float Pop()
         {
             if (IsEmpty())
             {
@@ -68,7 +80,7 @@ namespace Task3
         /// Returns element from the top of the stack and delete head.
         /// </summary>
         /// <returns>Element from top of the stack.</returns>
-        public string Peek()
+        public float Peek()
         {
             if (IsEmpty())
             {

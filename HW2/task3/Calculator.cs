@@ -24,7 +24,7 @@ namespace Task3
 
                 if (number.Length > 0)
                 {
-                    stack.Push(number);
+                    stack.Push(float.Parse(number));
                     number = string.Empty;
                     continue;
                 }
@@ -46,32 +46,15 @@ namespace Task3
                                 return (0, false);
                             }
 
-                            var topElement = float.Parse(stack.Pop());
+                            var topElement = stack.Pop();
 
                             if (stack.IsEmpty() || topElement == 0 && symbol == '/')
                             {
                                 return (0, false);
                             }
 
-                            stack.Push(topElement.ToString());
-                            var secondSymbol = float.Parse(stack.Pop());
-                            var firstSymbol = float.Parse(stack.Pop());
-                            if (symbol == '+')
-                            {
-                                stack.Push((firstSymbol + secondSymbol).ToString());
-                            }
-                            if (symbol == '-')
-                            {
-                                stack.Push((firstSymbol - secondSymbol).ToString());
-                            }
-                            if (symbol == '*')
-                            {
-                                stack.Push((firstSymbol * secondSymbol).ToString());
-                            }
-                            if (symbol == '/')
-                            {
-                                stack.Push((firstSymbol / secondSymbol).ToString());
-                            }
+                            stack.Push(topElement);
+                            PerformOperation(symbol);
                             break;
                         }
                     default:
@@ -85,7 +68,7 @@ namespace Task3
             {
                 return (0, false);
             }
-            var result = float.Parse(stack.Pop());
+            var result = stack.Pop();
 
             if (stack.IsEmpty())
             {
@@ -94,6 +77,33 @@ namespace Task3
 
             stack.Clear();
             return (0, false);
+        }
+
+        /// <summary>
+        /// Perform operation.
+        /// </summary>
+        /// <param name="symbol">Operation.</param>
+        private void PerformOperation(char symbol)
+        {
+            var secondSymbol = stack.Pop();
+
+            var firstSymbol = stack.Pop();
+            if (symbol == '+')
+            {
+                stack.Push(firstSymbol + secondSymbol);
+            }
+            if (symbol == '-')
+            {
+                stack.Push(firstSymbol - secondSymbol);
+            }
+            if (symbol == '*')
+            {
+                stack.Push(firstSymbol * secondSymbol);
+            }
+            if (symbol == '/')
+            {
+                stack.Push(firstSymbol / secondSymbol);
+            }
         }
     }
 }

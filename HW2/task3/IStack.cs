@@ -11,9 +11,9 @@ namespace Task3
     {
         bool IsEmpty();
 
-        void Push(string element);
+        void Push(float element);
 
-        string Pop();
+        float Pop();
 
         void Clear();
     }

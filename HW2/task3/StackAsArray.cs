@@ -9,7 +9,7 @@ namespace Task3
         /// <summary>
         /// Array of elements.
         /// </summary>
-        private string[] elements;
+        private float[] elements;
 
         /// <summary>
         /// Amount of elements.
@@ -26,7 +26,7 @@ namespace Task3
         /// </summary>
         public StackAsArray()
         {
-            elements = new string[length];
+            elements = new float[length];
         }
 
         /// <summary>
@@ -40,11 +40,11 @@ namespace Task3
         /// Adding item to the stack and resize, if necessary.
         /// </summary>
         /// <param name="element">Item for adding.</param>
-        public void Push(string element)
+        public void Push(float element)
         {
             if (count == elements.Length)
             {
-                Resize(elements.Length + 10);
+                Resize(elements.Length * 2);
             }
             elements[count] = element;
             count++;
@@ -54,13 +54,14 @@ namespace Task3
         /// Return item from the to of stack and resize, if necessary.
         /// </summary>
         /// <returns>Top off element.</returns>
-        public string Pop()
+        public float Pop()
         {
             if (IsEmpty())
             {
                 throw new InvalidOperationException("Stack is empty");
             }
-            string element = elements[--count];
+            --count;
+            float element = elements[count];
             elements[count] = default;
             if (count > 0 && count < elements.Length - 10)
             {
@@ -73,7 +74,7 @@ namespace Task3
         /// Returns element from top.
         /// </summary>
         /// <returns>Element from top.</returns>
-        public string Peek()
+        public float Peek()
         {
             if (!IsEmpty())
             {
@@ -91,7 +92,7 @@ namespace Task3
         /// <param name="newSize">New size of stack.</param>
         private void Resize(int newSize)
         {
-            string[] tempElements = new string[newSize];
+            var tempElements = new float[newSize];
             for (int i = 0; i < count; i++)
             {
                 tempElements[i] = elements[i];
@@ -104,7 +105,7 @@ namespace Task3
         /// </summary>
         public void Clear()
         {
-            elements = new string[length];
+            elements = new float[length];
             count = 0;
         }
     }
