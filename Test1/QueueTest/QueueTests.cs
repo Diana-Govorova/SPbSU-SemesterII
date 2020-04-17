@@ -54,5 +54,14 @@ namespace Task1
             queue.Enqueue("kek", 55);
             Assert.AreEqual("kek", queue.Dequeue());
         }
+
+        [Test]
+        public void AddThreeElementsDeleteOneElementCheckQueueTest()
+        {
+            queue.Enqueue("rt", 34);
+            queue.Enqueue("ty", 55);
+            queue.Enqueue("g", 60);
+            Assert.AreEqual("g", queue.Dequeue());
+        }
     }
 }
