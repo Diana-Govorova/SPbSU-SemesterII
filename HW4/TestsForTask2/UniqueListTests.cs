@@ -69,5 +69,13 @@ namespace Task2
 
             Assert.IsFalse(uniqueList.Contains(500));
         }
+
+        [Test]
+        public void ListShouldThrowExceptionIfAddedValueAlreadyExistInListTest()
+        {
+            uniqueList.AddNodeByPosition(1, 100);
+            uniqueList.AddNodeByPosition(2, 500);
+            Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.ChangeNodeValueByPosition(2, 100));
+        }
     }
 }
