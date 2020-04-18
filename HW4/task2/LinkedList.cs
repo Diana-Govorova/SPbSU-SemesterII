@@ -129,7 +129,7 @@ namespace Task2
         /// </summary>
         /// <param name="position">Index.</param>
         /// <param name="value">New value.</param>
-        public void ChangeNodeValueByPosition(int position, T value)
+        public virtual void ChangeNodeValueByPosition(int position, T value)
         {
             if (IsEmpty())
             {
@@ -158,7 +158,7 @@ namespace Task2
         /// </summary>
         /// <param name="position">Index.</param>
         /// <returns>Node's value.</returns>
-        private T GetNodeValueByPosition(int position)
+        public T GetNodeValueByPosition(int position)
         {
             if (IsEmpty())
             {

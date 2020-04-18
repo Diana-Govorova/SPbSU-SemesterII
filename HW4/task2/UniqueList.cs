@@ -23,6 +23,18 @@ namespace Task2
             }
         }
 
+        public override void ChangeNodeValueByPosition(int position, T value)
+        {
+            if (Contains(value))
+            {
+                throw new ItemAlreadyImplementedException($"Element {value} already exist.");
+            }
+            else
+            {
+                base.ChangeNodeValueByPosition(position, value);
+            }
+        }
+
         /// <summary>
         /// Delete an item in a list.
         /// </summary>
