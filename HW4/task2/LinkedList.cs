@@ -21,8 +21,16 @@ namespace Task2
             {
                 Data = data;
             }
-            public T Data { get; set; }
-            public Node<T> Next { get; set; }
+            public T Data
+            {
+                get;
+                set;
+            }
+            public Node<T> Next
+            {
+                get;
+                set;
+            }
         }
 
         private Node<T> head;
@@ -42,13 +50,21 @@ namespace Task2
         /// <param name="value">Node's value.</param>
         public virtual void AddNodeByPosition(int position, T value)
         {
-            var addedNode = new Node<T>(value);
-            if (IsEmpty())
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
+            if (IsEmpty() && position != 1)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
+            if (IsEmpty() && position == 1)
             {
                 head = new Node<T>(value);
                 size++;
                 return;
             }
+            var addedNode = new Node<T>(value);
             if (position == 1)
             {
                 var temporaryNode = head;
@@ -57,15 +73,15 @@ namespace Task2
                 size++;
                 return;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            CurrentNode.Next = addedNode;
-            addedNode.Next = NextNode;
+            currentNode.Next = addedNode;
+            addedNode.Next = nextNode;
             size++;
         }
 
@@ -77,7 +93,11 @@ namespace Task2
         {
             if (IsEmpty())
             {
-                return false;
+                throw new ArgumentException("List is empty.");
+            }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
             }
             if (position == 1)
             {
@@ -115,18 +135,22 @@ namespace Task2
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
             if (position == 1)
             {
                 head.Data = value;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            NextNode.Data = value;
+            nextNode.Data = value;
         }
 
         /// <summary>
@@ -134,24 +158,28 @@ namespace Task2
         /// </summary>
         /// <param name="position">Index.</param>
         /// <returns>Node's value.</returns>
-        public T GetNodeValueByPosition(int position)
+        private T GetNodeValueByPosition(int position)
         {
             if (IsEmpty())
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+            if (position <= 0)
+            {
+                throw new ArgumentException("Invalid position.");
+            }
             if (position == 1)
             {
                 return head.Data;
             }
-            var CurrentNode = head;
-            var NextNode = head.Next;
+            var currentNode = head;
+            var nextNode = head.Next;
             for (int i = 0; i < position - 2; i++)
             {
-                CurrentNode = NextNode;
-                NextNode = NextNode.Next;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
             }
-            return NextNode.Data;
+            return nextNode.Data;
         }
 
         /// <summary>
