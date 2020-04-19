@@ -1,10 +1,21 @@
+  
+# Version format
+version: 1.0.{build}
+
+# Build worker image
 image: Visual Studio 2019
 
-before_build:
-- nuget restore HW1/task4/task4.sln
+# Build platform
+platform: Any CPU
 
+# Build Configuration
+configuration: Debug
+
+# MSBuild settings
 build:
-project: HW1/task4/task4.sln
+  project: HW1\task4\task4.sln
+  verbosity: quiet
 
-test_script:
-- dotnet test HW1/task4/task4.sln
+# Execute script before build
+before_build:
+ - nuget restore HW1\task4\task4.sln
