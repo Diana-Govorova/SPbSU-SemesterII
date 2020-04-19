@@ -1,0 +1,10 @@
+image: Visual Studio 2019
+
+before_build:
+- nuget restore HW1/task4/task4.sln
+
+build:
+project: HW1/task4/task4.sln
+
+test_script:
+- dotnet test HW1/task4/task4.sln
