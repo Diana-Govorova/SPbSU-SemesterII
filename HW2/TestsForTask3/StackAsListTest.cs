@@ -22,14 +22,14 @@ namespace Task3
         [Test]
         public void AddElementCheckEmptyTest()
         {
-            list.Push("34");
+            list.Push(34.45f);
             Assert.IsFalse(list.IsEmpty());
         }
 
         [Test]
         public void AddElementDeleteElementCheckLinkedList()
         {
-            list.Push("ty");
+            list.Push(78.0f);
             list.Pop();
             Assert.IsTrue(list.IsEmpty());
         }

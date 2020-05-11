@@ -22,14 +22,14 @@ namespace Task3
         [Test]
         public void AddElementCheckEmptyTest()
         {
-            array.Push("34");
+            array.Push(2.1f);
             Assert.IsFalse(array.IsEmpty());
         }
 
         [Test]
         public void AddElementDeleteElementCheckStackAsArray()
         {
-            array.Push("ty");
+            array.Push(99.456f);
             array.Pop();
             Assert.IsTrue(array.IsEmpty());
         }
