@@ -11,9 +11,15 @@ namespace Task3
 
         private IStack stack;
 
+        /// <summary>
+        /// Calculate expression.
+        /// </summary>
+        /// <param name="expression">Input expression.</param>
+        /// <returns>Calculation result and if the expression was calculate.</returns>
         public (float, bool) CalculateExpressionValue(string expression)
         {
             var number = string.Empty;
+
             foreach (char symbol in expression)
             {
                 if (char.IsDigit(symbol))
@@ -68,6 +74,7 @@ namespace Task3
             {
                 return (0, false);
             }
+
             var result = stack.Pop();
 
             if (stack.IsEmpty())
@@ -88,18 +95,22 @@ namespace Task3
             var secondSymbol = stack.Pop();
 
             var firstSymbol = stack.Pop();
+
             if (symbol == '+')
             {
                 stack.Push(firstSymbol + secondSymbol);
             }
+
             if (symbol == '-')
             {
                 stack.Push(firstSymbol - secondSymbol);
             }
+
             if (symbol == '*')
             {
                 stack.Push(firstSymbol * secondSymbol);
             }
+
             if (symbol == '/')
             {
                 stack.Push(firstSymbol / secondSymbol);

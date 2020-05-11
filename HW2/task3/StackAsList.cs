@@ -13,22 +13,12 @@ namespace Task3
         {
             public Node(float value)
             {
-                this.element = value;
+                FloatValue = value;
             }
-
-            private float element;
-            private Node next;
             
-            public float Element
-            {
-                get => element;
-                set => this.element = value;
-            }
-            public Node Next
-            {
-                get;
-                set;
-            }
+            public float FloatValue { get; set; }
+           
+            public Node Next { get; set; }
         }
 
         /// <summary>
@@ -70,10 +60,11 @@ namespace Task3
             {
                 throw new InvalidOperationException("Stack is empty");
             }
+
             Node temp = head;
             head = head.Next;
             size--;
-            return temp.Element;
+            return temp.FloatValue;
         }
 
         /// <summary>
@@ -86,7 +77,8 @@ namespace Task3
             {
                 throw new InvalidOperationException("Stack is empty");
             }
-            return head.Element;
+
+            return head.FloatValue;
         }
 
         /// <summary>

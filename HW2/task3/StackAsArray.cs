@@ -46,6 +46,7 @@ namespace Task3
             {
                 Resize(elements.Length * 2);
             }
+
             elements[count] = element;
             count++;
         }
@@ -60,13 +61,16 @@ namespace Task3
             {
                 throw new InvalidOperationException("Stack is empty");
             }
+
             --count;
             float element = elements[count];
             elements[count] = default;
+
             if (count > 0 && count < elements.Length - 10)
             {
                 Resize(elements.Length - 10);
             }
+
             return element;
         }
 
@@ -80,6 +84,7 @@ namespace Task3
             {
                 return elements[count - 1];
             }
+
             else
             {
                 throw new InvalidOperationException("Stack is empty");
@@ -93,10 +98,12 @@ namespace Task3
         private void Resize(int newSize)
         {
             var tempElements = new float[newSize];
+
             for (int i = 0; i < count; i++)
             {
                 tempElements[i] = elements[i];
             }
+
             elements = tempElements;
         }
 
