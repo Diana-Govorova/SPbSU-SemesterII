@@ -43,7 +43,7 @@ namespace Task1
             }
             catch (Exception exeption)
             {
-                Assert.AreEqual(exeption.Message, "Cannot delete, list is empty!");
+                Assert.AreEqual("Cannot delete, list is empty!", exeption.Message);
             }
         }
 
