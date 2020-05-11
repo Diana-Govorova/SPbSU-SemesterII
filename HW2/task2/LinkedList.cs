@@ -15,23 +15,14 @@ namespace Task2
         /// </summary>
         private class Node // LinkedList's element
         {
-            private string value;
             public Node(string value)
             {
-                this.value = value;
+                Value = value;
             }
 
-            public string Value
-            {
-                get => value;
-                set => this.value = value;
-            }
+            public string Value { get; set; }
 
-            public Node Next
-            {
-                get;
-                set;
-            }
+            public Node Next { get; set; }
         }
 
         private Node head;
@@ -57,7 +48,14 @@ namespace Task2
                 size++;
                 return;
             }
+
+            if (position <= 0)
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+
             var addedNode = new Node(value);
+
             if (position == 1)
             {
                 var temporaryNode = head;
@@ -66,15 +64,19 @@ namespace Task2
                 size++;
                 return;
             }
+
             var currentNode = head;
             var nextNode = head.Next;
+
             for (int i = 0; i < position - 2; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
+
             currentNode.Next = addedNode;
             addedNode.Next = nextNode;
+
             size++;
         }
 
@@ -82,29 +84,35 @@ namespace Task2
         /// Delete node by position.
         /// </summary>
         /// <param name="position">Index.</param>
+        /// <returns>If the element was deleted.</returns>
         public bool DeleteNodeByPosition(int position)
         {
             if (IsEmpty())
             {
-                throw new ArgumentException("List is empty.");
+                throw new InvalidOperationException("Cannot delete, list is empty!");
             }
+
             if (position <= 0)
             {
-                throw new ArgumentException("Invalid position.");
+                throw new InvalidOperationException("Invalid position");
             }
+
             if (position == 1)
             {
                 head = head.Next;
                 size--;
                 return true;
             }
+
             var currentNode = head;
             var nextNode = head.Next;
+
             for (int i = 0; i < position - 2; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
+
             currentNode.Next = nextNode.Next;
             size--;
             return true;
@@ -126,24 +134,29 @@ namespace Task2
         {
             if (IsEmpty())
             {
-                throw new ArgumentException("There's no element with input position.");
+                throw new InvalidOperationException("List is empty!");
             }
+
             if (position <= 0)
             {
-                throw new ArgumentException("Invalid position.");
+                throw new InvalidOperationException("Invalid position");
             }
+
             if (position == 1)
             {
                 head.Value = value;
                 return;
             }
+
             var currentNode = head;
             var nextNode = head.Next;
+
             for (int i = 0; i < position - 2; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
+
             nextNode.Value = value;
         }
 
@@ -158,21 +171,26 @@ namespace Task2
             {
                 throw new ArgumentException("There's no element with input position.");
             }
+
             if (position <= 0)
             {
-                throw new ArgumentException("Invalid position.");
+                throw new InvalidOperationException("Invalid position");
             }
+
             if (position == 1)
             {
                 return head.Value;
             }
+
             var currentNode = head;
             var nextNode = head.Next;
+
             for (int i = 0; i < position - 2; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
+
             return nextNode.Value;
         }
 
@@ -182,6 +200,7 @@ namespace Task2
         public void PrintLinkedList()
         {
             var temproraryNode = head;
+
             for (int i = 0; i < size; i++)
             {
                 Console.WriteLine($"#{i + 1} is {temproraryNode.Value}");
@@ -189,6 +208,11 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// Delition string by value.
+        /// </summary>
+        /// <param name="str">String for delition.</param>
+        /// <returns>If string was deleted.</returns>
         public bool DeleteValueByValue(string str)
         {
             var currentNode = head;
@@ -202,10 +226,12 @@ namespace Task2
                     {
                         previousNode.Next = currentNode.Next;
                     }
+
                     else
                     {
                         head = head.Next;
                     }
+
                     size--;
                     return true;
                 }
@@ -213,6 +239,7 @@ namespace Task2
                 previousNode = currentNode;
                 currentNode = currentNode.Next;
             }
+
             return false;
         }
 
@@ -224,6 +251,7 @@ namespace Task2
         public bool Contains(string str)
         {
             Node current = head;
+
             while (current != null)
             {
                 if (current.Value.Equals(str))
@@ -231,8 +259,10 @@ namespace Task2
                     Console.WriteLine("String is found.");
                     return true;
                 }
+
                 current = current.Next;
             }
+
             Console.WriteLine("String isnt found.");
             return false;
         }
@@ -249,12 +279,15 @@ namespace Task2
             {
                 throw new Exception("List is empty");
             }
+
             var allNodes = new string[size];
+
             for (int i = 0; i < size; i++)
             {
                 allNodes[i] = Convert.ToString(currentNode.Value);
                 currentNode = currentNode.Next;
             }
+
             return allNodes;
         }
     }

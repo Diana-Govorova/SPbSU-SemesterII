@@ -38,7 +38,7 @@ namespace Task2
         /// <summary>
         /// Create hash table.
         /// </summary>
-        /// <param name="hashFunction"></param>
+        /// <param name="hashFunction">Hash function.</param>
         public HashTable(IHashFunction hashFunction)
         {
             size = 5;
@@ -53,6 +53,7 @@ namespace Task2
         {
             hashTable = new LinkedList[size];
             amountOfElements = 0;
+
             for (int i = 0; i < size; ++i)
             {
                 hashTable[i] = new LinkedList();
@@ -62,14 +63,16 @@ namespace Task2
         /// <summary>
         /// Change size of hash table.
         /// </summary>
-        /// <param name="size"></param>
+        /// <param name="newSize">New size of hash table.</param>
         private void ReSize(int newSize)
         {
             if (newSize <= 0)
             {
                 throw new InvalidOperationException("Size <= 0");
             }
+
             var temporaryHashTable = new LinkedList[newSize];
+
             for (int i = 0; i < temporaryHashTable.Length; i++)
             {
                 temporaryHashTable[i] = new LinkedList();
@@ -81,12 +84,15 @@ namespace Task2
                 {
                     continue;
                 }
+
                 var temporaryNodes = hashTable[i].ReturnAllNodes();
+
                 foreach (var item in temporaryNodes)
                 {
                     temporaryHashTable[CalculateHash(item)].AddNodeByPosition(1, item);
                 }
             }
+
             hashTable = temporaryHashTable;
             LoadFactorCheck();
         }
@@ -95,8 +101,7 @@ namespace Task2
         /// Calculate hash value of input string.
         /// </summary>
         /// <param name="str">Input string.</param>
-        /// <param name="size">Size of hash table</param>
-        /// <returns></returns>
+        /// <returns>Hash value.</returns>
         private int CalculateHash(string str)
         {
             int hashValue = this.hashFunction.Calculate(str);
@@ -163,18 +168,20 @@ namespace Task2
         {
             var hashValue = CalculateHash(str);
             var valueForDelete = hashTable[hashValue].DeleteValueByValue(str);
+
             if (valueForDelete)
             {
                 amountOfElements--;
                 loadFactor = ((float)amountOfElements / size);
             }
+
             return valueForDelete;
         }
 
         /// <summary>
         /// Check if the hash table has the selected string or not.
         /// </summary>
-        /// <param name="data">String to check.</param>
+        /// <param name="str">String to check.</param>
         /// <returns>Indicates if the string is present in the hash table or not.</returns>
         public bool HashContains(string str)
         {
