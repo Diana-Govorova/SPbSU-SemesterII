@@ -11,9 +11,9 @@ namespace Task2
             IHashFunction hash = new Hash1();
             HashTable hashTable = new HashTable(hash);
 
-            hashTable.AddHashValue("ghj");
-            hashTable.AddHashValue("wer");
-            hashTable.AddHashValue("gfgh");
+            hashTable.AddValue("ghj");
+            hashTable.AddValue("wer");
+            hashTable.AddValue("gfgh");
 
             hashTable.DeleteValue("ghj");
             hashTable.DeleteValue("gfgh");
@@ -29,8 +29,8 @@ namespace Task2
             IHashFunction hash = new Hash2();
             HashTable hashTable = new HashTable(hash);
 
-            hashTable.AddHashValue("ghj");
-            hashTable.AddHashValue("wer");
+            hashTable.AddValue("ghj");
+            hashTable.AddValue("wer");
             hashTable.DeleteValue("ghj");
 
             Assert.IsFalse(hashTable.HashContains("ghj"));
@@ -42,12 +42,12 @@ namespace Task2
         {
             IHashFunction hash = new Hash2();
             HashTable hashTable = new HashTable(hash);
-            hashTable.AddHashValue("asd");
-            hashTable.AddHashValue("vbn");
+            hashTable.AddValue("asd");
+            hashTable.AddValue("vbn");
 
             IHashFunction newHash = new Hash1();
             hashTable.ChangeHashFunction(newHash);
-            hashTable.AddHashValue("abn");
+            hashTable.AddValue("abn");
             hashTable.DeleteValue("vbn");
 
             Assert.IsTrue(hashTable.HashContains("abn"));
