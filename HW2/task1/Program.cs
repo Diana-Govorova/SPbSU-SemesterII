@@ -57,7 +57,6 @@ namespace Task1
                             else
                             {
                                 Console.WriteLine("List isnt empty");
-
                             }
                             break;
                         }

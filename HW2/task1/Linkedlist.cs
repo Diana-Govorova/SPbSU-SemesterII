@@ -14,21 +14,12 @@ namespace Task1
         {
             public Node(int value)
             {
-                this.value = value;
+                Value = value;
             }
 
-            private int value;
+            public int Value { get; set; }
 
-            public int Value
-            {
-                get => value;
-                set => this.value = value;
-            }
-            public Node Next
-            {
-                get;
-                set;
-            }
+            public Node Next { get; set; }
         }
 
         private Node head;
@@ -51,6 +42,7 @@ namespace Task1
             if (IsEmpty())
             {
                 head = new Node(value);
+                size++;
                 return;
             }
             if (position <= 0)
@@ -63,6 +55,8 @@ namespace Task1
                 var temporaryNode = head;
                 head = addedNode;
                 head.Next = temporaryNode;
+                size++;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;
@@ -80,6 +74,7 @@ namespace Task1
         /// Delete node by position.
         /// </summary>
         /// <param name="position">Index.</param>
+        /// <returns>If the element was deleted.</returns>
         public bool DeleteNodeByPosition(int position)
         {
             if (IsEmpty())
@@ -133,6 +128,7 @@ namespace Task1
             if (position == 1)
             {
                 head.Value = value;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;
