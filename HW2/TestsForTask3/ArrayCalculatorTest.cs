@@ -5,7 +5,7 @@ namespace Task3
 {
     public class ArrayCalculatorTest
     {
-        Calculator calculator;
+        private Calculator calculator;
 
         [SetUp]
         public void Setup()
@@ -17,14 +17,14 @@ namespace Task3
         public void CalculateWithCorrectExpression1Test()
         {
             string inputStr = "34 98 +";
-            Assert.AreEqual(calculator.CalculateExpressionValue(inputStr), (132, true));
+            Assert.AreEqual((132, true), calculator.CalculateExpressionValue(inputStr));
         }
 
         [Test]
         public void CalculateWithCorrectExpression2Test()
         {
             string inputStr = "100 100 /";
-            Assert.AreEqual(calculator.CalculateExpressionValue(inputStr), (1, true));
+            Assert.AreEqual((1, true), calculator.CalculateExpressionValue(inputStr));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Task3
             }
             catch (Exception exception)
             {
-                Assert.AreEqual(exception.Message, "unknown character");
+                Assert.AreEqual("unknown character", exception.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace Task3
             }
             catch (Exception exception)
             {
-                Assert.AreEqual(exception.Message, "extra sign");
+                Assert.AreEqual("extra sign", exception.Message);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Task3
             }
             catch (Exception exception)
             {
-                Assert.AreEqual(exception.Message, "extra value");
+                Assert.AreEqual("extra value", exception.Message);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Task3
             }
             catch (Exception exception)
             {
-                Assert.AreEqual(exception.Message, "incorrect expression");
+                Assert.AreEqual("incorrect expression", exception.Message);
             }
         }
     }

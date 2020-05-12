@@ -43,7 +43,7 @@ namespace Task3
             }
             catch (Exception exeption)
             {
-                Assert.AreEqual(exeption.Message, "Stack is empty");
+                Assert.AreEqual("Stack is empty", exeption.Message);
             }
         }
     }
