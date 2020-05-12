@@ -21,16 +21,10 @@ namespace Task2
             {
                 Data = data;
             }
-            public T Data
-            {
-                get;
-                set;
-            }
-            public Node<T> Next
-            {
-                get;
-                set;
-            }
+            public T Data { get; set; }
+         
+            public Node<T> Next { get; set; }
+           
         }
 
         private Node<T> head;
@@ -142,6 +136,7 @@ namespace Task2
             if (position == 1)
             {
                 head.Data = value;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;
