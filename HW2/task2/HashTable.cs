@@ -89,7 +89,7 @@ namespace Task2
 
                 foreach (var item in temporaryNodes)
                 {
-                    temporaryHashTable[CalculateHash(item)].AddNodeByPosition(1, item);
+                    temporaryHashTable[CalculateHash(item)].AddNodeByPosition(0, item);
                 }
             }
 
@@ -139,7 +139,7 @@ namespace Task2
         private void AddHashValue(string str)
         {
             int hashValue = CalculateHash(str);
-            hashTable[hashValue].AddNodeByPosition(1, str);
+            hashTable[hashValue].AddNodeByPosition(0, str);
         }
 
         /// <summary>

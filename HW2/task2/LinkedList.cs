@@ -42,21 +42,26 @@ namespace Task2
         /// <param name="value">Node's value.</param>
         public void AddNodeByPosition(int position, string value)
         {
-            if (IsEmpty())
+            if ((position < 0) || (position > size))
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+
+            if (IsEmpty() && (position != 0))
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+
+            if (IsEmpty() && (position == 0))
             {
                 head = new Node(value);
                 size++;
                 return;
             }
 
-            if (position <= 0)
-            {
-                throw new InvalidOperationException("Invalid position");
-            }
-
             var addedNode = new Node(value);
 
-            if (position == 1)
+            if (position == 0)
             {
                 var temporaryNode = head;
                 head = addedNode;
@@ -85,23 +90,23 @@ namespace Task2
         /// </summary>
         /// <param name="position">Index.</param>
         /// <returns>If the element was deleted.</returns>
-        public bool DeleteNodeByPosition(int position)
+        public void DeleteNodeByPosition(int position)
         {
             if (IsEmpty())
             {
                 throw new InvalidOperationException("Cannot delete, list is empty!");
             }
 
-            if (position <= 0)
+            if ((position < 0) || (position > size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
 
-            if (position == 1)
+            if (position == 0)
             {
                 head = head.Next;
                 size--;
-                return true;
+                return;
             }
 
             var currentNode = head;
@@ -115,7 +120,6 @@ namespace Task2
 
             currentNode.Next = nextNode.Next;
             size--;
-            return true;
         }
 
         /// <summary>
@@ -137,12 +141,12 @@ namespace Task2
                 throw new InvalidOperationException("List is empty!");
             }
 
-            if (position <= 0)
+            if ((position < 0) || (position > size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
 
-            if (position == 1)
+            if (position == 0)
             {
                 head.Value = value;
                 return;
@@ -172,12 +176,12 @@ namespace Task2
                 throw new ArgumentException("There's no element with input position.");
             }
 
-            if (position <= 0)
+            if ((position < 0) || (position > size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
 
-            if (position == 1)
+            if (position == 0)
             {
                 return head.Value;
             }
