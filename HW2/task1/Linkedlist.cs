@@ -93,6 +93,7 @@ namespace Task1
             {
                 head = head.Next;
                 size--;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;
