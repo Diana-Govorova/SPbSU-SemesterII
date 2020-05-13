@@ -22,15 +22,15 @@ namespace Task1
         [Test]
         public void AddElementCheckEmptyTest()
         {
-            linkedList.AddNodeByPosition(1, 10);
+            linkedList.AddNodeByPosition(0, 10);
             Assert.IsFalse(linkedList.IsEmpty());
         }
 
         [Test]
         public void AddElementDeleteElementCheckLinkedList()
         {
-            linkedList.AddNodeByPosition(1, 10);
-            linkedList.DeleteNodeByPosition(1);
+            linkedList.AddNodeByPosition(0, 10);
+            linkedList.DeleteNodeByPosition(0);
             Assert.IsTrue(linkedList.IsEmpty());
         }
 
@@ -50,10 +50,10 @@ namespace Task1
         [Test]
         public void ChangeAndGetElement()
         {
-            linkedList.AddNodeByPosition(1, 10);
-            linkedList.AddNodeByPosition(2, 15);
-            linkedList.ChangeNodeValueByPosition(2, 20);
-            Assert.AreEqual(20, linkedList.GetNodeValueByPosition(2));
+            linkedList.AddNodeByPosition(0, 10);
+            linkedList.AddNodeByPosition(1, 15);
+            linkedList.ChangeNodeValueByPosition(1, 20);
+            Assert.AreEqual(20, linkedList.GetNodeValueByPosition(1));
         }
     }
 }
