@@ -47,11 +47,6 @@ namespace Task2
                 throw new InvalidOperationException("Invalid position");
             }
 
-            if (IsEmpty() && (position != 0))
-            {
-                throw new InvalidOperationException("Invalid position");
-            }
-
             if (IsEmpty() && (position == 0))
             {
                 head = new Node(value);
@@ -73,7 +68,7 @@ namespace Task2
             var currentNode = head;
             var nextNode = head.Next;
 
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i < position - 1; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
@@ -97,7 +92,7 @@ namespace Task2
                 throw new InvalidOperationException("Cannot delete, list is empty!");
             }
 
-            if ((position < 0) || (position > size))
+            if ((position < 0) || (position > size - 1))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -112,7 +107,7 @@ namespace Task2
             var currentNode = head;
             var nextNode = head.Next;
 
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i < position - 1; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
@@ -141,7 +136,7 @@ namespace Task2
                 throw new InvalidOperationException("List is empty!");
             }
 
-            if ((position < 0) || (position > size))
+            if ((position < 0) || (position > size - 1))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -153,15 +148,18 @@ namespace Task2
             }
 
             var currentNode = head;
-            var nextNode = head.Next;
 
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i <= position - 1; i++)
             {
-                currentNode = nextNode;
-                nextNode = nextNode.Next;
+                if (currentNode == null || currentNode.Next == null)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                currentNode = currentNode.Next;
             }
 
-            nextNode.Value = value;
+            currentNode.Value = value;
         }
 
         /// <summary>
@@ -176,7 +174,7 @@ namespace Task2
                 throw new ArgumentException("There's no element with input position.");
             }
 
-            if ((position < 0) || (position > size))
+            if ((position < 0) || (position > size - 1))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -187,15 +185,18 @@ namespace Task2
             }
 
             var currentNode = head;
-            var nextNode = head.Next;
 
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i <= position - 1; i++)
             {
-                currentNode = nextNode;
-                nextNode = nextNode.Next;
+                if (currentNode == null || currentNode.Next == null)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                currentNode = currentNode.Next;
             }
 
-            return nextNode.Value;
+            return currentNode.Value;
         }
 
         /// <summary>
