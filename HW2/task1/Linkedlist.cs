@@ -10,7 +10,7 @@ namespace Task1
         /// <summary>
         /// Implementation of the <see cref="LinkedList"/>'s Node class.
         /// </summary>
-        private class Node // LinkedList's element
+        protected class Node // LinkedList's element
         {
             public Node(int value)
             {
@@ -22,7 +22,7 @@ namespace Task1
             public Node Next { get; set; }
         }
 
-        private Node head;
+        protected Node head;
         private int size;
 
         /// <summary>
@@ -77,11 +77,7 @@ namespace Task1
         /// <returns>If the element was deleted.</returns>
         public void DeleteNodeByPosition(int position)
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException("Cannot delete, list is empty!");
-            }
-            if ((position < 0) || (position > size - 1))
+            if ((position < 0) || (position >= size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -110,17 +106,28 @@ namespace Task1
             => size;
 
         /// <summary>
+        /// Shift to a certain position.
+        /// </summary>
+        /// <param name="position">Input position.</param>
+        /// <returns>Node by certain position.</returns>
+        private Node shiftToCertainPosition(int position)
+        {
+            var currentNode = head;
+            for (int i = 0; i < position; i++)
+            {
+                currentNode = currentNode.Next;
+            }
+            return currentNode;
+        }
+
+        /// <summary>
         /// Change node value by position.
         /// </summary>
         /// <param name="position">Index.</param>
         /// <param name="value">New value.</param>
         public void ChangeNodeValueByPosition(int position, int value)
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException("List is empty!");
-            }
-            if ((position < 0) || (position > size - 1))
+            if ((position < 0) || (position >= size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -129,17 +136,7 @@ namespace Task1
                 head.Value = value;
                 return;
             }
-            var currentNode = head;
-            for (int i = 0; i <= position - 1; i++)
-            {
-                if (currentNode == null || currentNode.Next == null)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                currentNode = currentNode.Next;
-            }
-            currentNode.Value = value;
+            shiftToCertainPosition(position).Value = value;
         }
 
         /// <summary>
@@ -149,11 +146,7 @@ namespace Task1
         /// <returns>Node's value.</returns>
         public int GetNodeValueByPosition(int position)
         {
-            if (IsEmpty())
-            {
-                throw new ArgumentException("There's no element with input position.");
-            }
-            if ((position < 0) || (position > size - 1))
+            if ((position < 0) || (position >= size))
             {
                 throw new InvalidOperationException("Invalid position");
             }
@@ -161,17 +154,7 @@ namespace Task1
             {
                return head.Value;
             }
-            var currentNode = head;
-            for (int i = 0; i <= position - 1; i++)
-            {
-                if (currentNode == null || currentNode.Next == null)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                currentNode = currentNode.Next;
-            }
-            return currentNode.Value;
+            return shiftToCertainPosition(position).Value;          
         }
 
         /// <summary>
