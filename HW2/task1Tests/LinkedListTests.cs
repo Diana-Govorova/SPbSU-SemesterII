@@ -41,7 +41,7 @@ namespace Task1
             {
                 linkedList.DeleteNodeByPosition(1);
             }
-            catch (Exception exeption)
+            catch (InvalidOperationException exeption)
             {
                 Assert.AreEqual("Cannot delete, list is empty!", exeption.Message);
             }
