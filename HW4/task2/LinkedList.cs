@@ -15,7 +15,7 @@ namespace Task2
         /// Implementation of the <see cref="LinkedList"/>'s Node class.
         /// </summary>
         /// <typeparam name="T">Type of data storaged within the element</typeparam>
-        private class Node<T> // LinkedList's element
+        protected class Node<T> // LinkedList's element
         {
             public Node(T data)
             {
@@ -27,7 +27,7 @@ namespace Task2
            
         }
 
-        private Node<T> head;
+        protected Node<T> head;
         private int size;
 
         /// <summary>
@@ -44,22 +44,18 @@ namespace Task2
         /// <param name="value">Node's value.</param>
         public virtual void AddNodeByPosition(int position, T value)
         {
-            if (position <= 0)
+            if ((position < 0) || (position > size))
             {
-                throw new ArgumentException("Invalid position.");
+                throw new InvalidOperationException("Invalid position");
             }
-            if (IsEmpty() && position != 1)
+            if (IsEmpty() && (position == 0))
             {
-                throw new ArgumentException("Invalid position.");
-            }
-            if (IsEmpty() && position == 1)
-            {
-                head = new Node<T>(value);
+                head = new Node(value);
                 size++;
                 return;
             }
-            var addedNode = new Node<T>(value);
-            if (position == 1)
+            var addedNode = new Node(value);
+            if (position == 0)
             {
                 var temporaryNode = head;
                 head = addedNode;
@@ -69,7 +65,7 @@ namespace Task2
             }
             var currentNode = head;
             var nextNode = head.Next;
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i < position - 1; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
@@ -79,36 +75,32 @@ namespace Task2
             size++;
         }
 
+
         /// <summary>
         /// Delete node by position.
         /// </summary>
         /// <param name="position">Index.</param>
         public bool DeleteNodeByPosition(int position)
         {
-            if (IsEmpty())
+            if ((position < 0) || (position >= size))
             {
-                throw new ArgumentException("List is empty.");
+                throw new InvalidOperationException("Invalid position");
             }
-            if (position <= 0)
-            {
-                throw new ArgumentException("Invalid position.");
-            }
-            if (position == 1)
+            if (position == 0)
             {
                 head = head.Next;
                 size--;
-                return true;
+                return;
             }
             var currentNode = head;
             var nextNode = head.Next;
-            for (int i = 0; i < position - 2; i++)
+            for (int i = 0; i < position - 1; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
             currentNode.Next = nextNode.Next;
             size--;
-            return true;
         }
 
         /// <summary>
@@ -119,33 +111,37 @@ namespace Task2
             => size;
 
         /// <summary>
+        /// Shift to a certain position.
+        /// </summary>
+        /// <param name="position">Input position.</param>
+        /// <returns>Node by certain position.</returns>
+        private Node shiftToCertainPosition(int position)
+        {
+            var currentNode = head;
+            for (int i = 0; i < position; i++)
+            {
+                currentNode = currentNode.Next;
+            }
+            return currentNode;
+        }
+
+        /// <summary>
         /// Change node value by position.
         /// </summary>
         /// <param name="position">Index.</param>
         /// <param name="value">New value.</param>
         public virtual void ChangeNodeValueByPosition(int position, T value)
         {
-            if (IsEmpty())
+            if ((position < 0) || (position >= size))
             {
-                throw new ArgumentException("There's no element with input position.");
+                throw new InvalidOperationException("Invalid position");
             }
-            if (position <= 0)
+            if (position == 0)
             {
-                throw new ArgumentException("Invalid position.");
-            }
-            if (position == 1)
-            {
-                head.Data = value;
+                head.Value = value;
                 return;
             }
-            var currentNode = head;
-            var nextNode = head.Next;
-            for (int i = 0; i < position - 2; i++)
-            {
-                currentNode = nextNode;
-                nextNode = nextNode.Next;
-            }
-            nextNode.Data = value;
+            shiftToCertainPosition(position).Value = value;
         }
 
         /// <summary>
@@ -155,26 +151,15 @@ namespace Task2
         /// <returns>Node's value.</returns>
         public T GetNodeValueByPosition(int position)
         {
-            if (IsEmpty())
+            if ((position < 0) || (position >= size))
             {
-                throw new ArgumentException("There's no element with input position.");
+                throw new InvalidOperationException("Invalid position");
             }
-            if (position <= 0)
+            if (position == 0)
             {
-                throw new ArgumentException("Invalid position.");
+                return head.Value;
             }
-            if (position == 1)
-            {
-                return head.Data;
-            }
-            var currentNode = head;
-            var nextNode = head.Next;
-            for (int i = 0; i < position - 2; i++)
-            {
-                currentNode = nextNode;
-                nextNode = nextNode.Next;
-            }
-            return nextNode.Data;
+            return shiftToCertainPosition(position).Value;
         }
 
         /// <summary>
