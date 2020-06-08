@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace Task3
 {
     /// <summary>
-    /// Progress indicator class
+    /// Progress indicator class.
     /// </summary>
     public partial class ProgressIndicatorForm : Form
     {
@@ -27,7 +27,7 @@ namespace Task3
         }
 
         /// <summary>
-        /// Scale filling
+        /// Scale filling.
         /// </summary>
         private void buttonStart_Click(object sender, EventArgs e)
         {

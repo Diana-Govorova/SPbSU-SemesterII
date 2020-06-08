@@ -37,10 +37,10 @@
             // 
             this.buttonStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.buttonStart.ForeColor = System.Drawing.Color.Black;
-            this.buttonStart.Location = new System.Drawing.Point(287, 177);
+            this.buttonStart.Location = new System.Drawing.Point(239, 151);
             this.buttonStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(103, 58);
+            this.buttonStart.Size = new System.Drawing.Size(129, 100);
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = false;
@@ -48,10 +48,10 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(193, 103);
+            this.progressBar.Location = new System.Drawing.Point(89, 68);
             this.progressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(291, 47);
+            this.progressBar.Size = new System.Drawing.Size(424, 46);
             this.progressBar.TabIndex = 1;
             // 
             // timer
@@ -62,7 +62,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 360);
+            this.ClientSize = new System.Drawing.Size(609, 414);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonStart);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
