@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Task2
 {
-    public partial class Form1 : Form
+    public partial class  Clock : Form
     {
         Timer t = new Timer();
 
@@ -22,7 +22,7 @@ namespace Task2
         Bitmap bmp;
         Graphics g;
 
-        public Form1()
+        public Clock()
         {
             InitializeComponent();
         }
