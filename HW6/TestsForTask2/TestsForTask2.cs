@@ -11,7 +11,7 @@ namespace Task2
         [SetUp]
         public void Setup()
         {
-            using (StreamWriter sw = new StreamWriter("test.txt"))
+            var using (StreamWriter sw = new StreamWriter("test.txt"))
             {
                 sw.Write(@"#####
 #   #
