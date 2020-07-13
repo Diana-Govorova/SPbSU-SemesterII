@@ -15,7 +15,7 @@ namespace Task2
         /// Implementation of the <see cref="LinkedList"/>'s Node class.
         /// </summary>
         /// <typeparam name="T">Type of data storaged within the element</typeparam>
-        protected class Node<T> // LinkedList's element
+        protected class Node // LinkedList's element
         {
             public Node(T data)
             {
@@ -23,11 +23,11 @@ namespace Task2
             }
             public T Data { get; set; }
          
-            public Node<T> Next { get; set; }
+            public Node Next { get; set; }
            
         }
 
-        protected Node<T> head;
+        protected Node head;
         private int size;
 
         /// <summary>
@@ -86,21 +86,26 @@ namespace Task2
             {
                 throw new InvalidOperationException("Invalid position");
             }
+
             if (position == 0)
             {
                 head = head.Next;
                 size--;
-                return;
+                return true;
             }
+
             var currentNode = head;
             var nextNode = head.Next;
+
             for (int i = 0; i < position - 1; i++)
             {
                 currentNode = nextNode;
                 nextNode = nextNode.Next;
             }
+
             currentNode.Next = nextNode.Next;
             size--;
+            return true;
         }
 
         /// <summary>
@@ -115,7 +120,7 @@ namespace Task2
         /// </summary>
         /// <param name="position">Input position.</param>
         /// <returns>Node by certain position.</returns>
-        private Node shiftToCertainPosition(int position)
+        private Node ShiftToCertainPosition(int position)
         {
             var currentNode = head;
             for (int i = 0; i < position; i++)
@@ -138,10 +143,10 @@ namespace Task2
             }
             if (position == 0)
             {
-                head.Value = value;
+                head.Data = value;
                 return;
             }
-            shiftToCertainPosition(position).Value = value;
+            shiftToCertainPosition(position).Data = value;
         }
 
         /// <summary>
@@ -157,9 +162,9 @@ namespace Task2
             }
             if (position == 0)
             {
-                return head.Value;
+                return head.Data;
             }
-            return shiftToCertainPosition(position).Value;
+            return shiftToCertainPosition(position).Data;
         }
 
         /// <summary>
@@ -182,7 +187,7 @@ namespace Task2
         public virtual void DeleteValueByValue(T value)
         {
             var currentNode = head;
-            Node<T> previousNode = null;
+            Node previousNode = null;
 
             while (currentNode != null)
             {
@@ -211,7 +216,7 @@ namespace Task2
         /// <returns>Indicates whether the selected string is present in the linked list.</returns>
         public bool Contains(T value)
         {
-            Node<T> current = head;
+            Node current = head;
             while (current != null)
             {
                 if (current.Data.Equals(value))
@@ -273,6 +278,34 @@ namespace Task2
                 yield return current.Data;
                 current = current.Next;
             }
+        }
+
+        /// <summary>
+        /// Get position of value by value.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        /// <returns>Position of the value.</returns>
+        public int GetValuePositionByValue(T value)
+        {
+            if (!Contains(value))
+            {
+                throw new InvalidOperationException("List doesnt contain the value.");
+            }
+
+            Node current = head;
+            int position = 0;
+
+            while (current != null)
+            {
+                if (current.Data.Equals(value))
+                {
+                    return position;
+                }
+                current = current.Next;
+                position++;
+            }
+
+            throw new InvalidOperationException("Element not found after iteration.");
         }
     }
 }

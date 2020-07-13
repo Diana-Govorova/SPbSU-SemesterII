@@ -21,15 +21,15 @@ namespace Task2
         [Test]
         public void AddByNumberTest()
         {
-            uniqueList.AddNodeByPosition(1, 15);
+            uniqueList.AddNodeByPosition(0, 15);
             Assert.IsFalse(uniqueList.IsEmpty());
         }
 
         [Test]
         public void ListShouldThrowExceptionIfPresentDataIsAddedTest()
         {
-            uniqueList.AddNodeByPosition(1, 100);
-            uniqueList.AddNodeByPosition(2, 500);
+            uniqueList.AddNodeByPosition(0, 100);
+            uniqueList.AddNodeByPosition(1, 500);
 
             Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.AddNodeByPosition(1, 100));
         }
@@ -38,8 +38,8 @@ namespace Task2
         [Test]
         public void ListShouldThrowExceptionIfTryDeleteNonexistentElementTest()
         {
-            uniqueList.AddNodeByPosition(1, 100);
-            uniqueList.AddNodeByPosition(2, 500);
+            uniqueList.AddNodeByPosition(0, 100);
+            uniqueList.AddNodeByPosition(1, 500);
 
             Assert.Throws<DeleteNonexistentItemException>(() => uniqueList.DeleteValueByValue(150));
         }
@@ -47,8 +47,8 @@ namespace Task2
         [Test]
         public void ContainsPresentDataTest()
         {
-            uniqueList.AddNodeByPosition(1, 0);
-            uniqueList.AddNodeByPosition(2, 123);
+            uniqueList.AddNodeByPosition(0, 0);
+            uniqueList.AddNodeByPosition(1, 123);
 
             Assert.IsTrue(uniqueList.Contains(123));
         }
@@ -56,7 +56,7 @@ namespace Task2
         [Test]
         public void AddAndDeleteElementTest()
         {
-            uniqueList.AddNodeByPosition(1, 5);
+            uniqueList.AddNodeByPosition(0, 5);
             uniqueList.DeleteValueByValue(5);
 
             Assert.IsTrue(uniqueList.IsEmpty());
@@ -65,7 +65,7 @@ namespace Task2
         [Test]
         public void ContainsNonExistantDataTest()
         {
-            uniqueList.AddNodeByPosition(1, 100);
+            uniqueList.AddNodeByPosition(0, 100);
 
             Assert.IsFalse(uniqueList.Contains(500));
         }
@@ -73,9 +73,17 @@ namespace Task2
         [Test]
         public void ListShouldThrowExceptionIfAddedValueAlreadyExistInListTest()
         {
-            uniqueList.AddNodeByPosition(1, 100);
-            uniqueList.AddNodeByPosition(2, 500);
+            uniqueList.AddNodeByPosition(0, 100);
+            uniqueList.AddNodeByPosition(1, 500);
             Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.ChangeNodeValueByPosition(2, 100));
+        }
+
+        [Test]
+        public void WhenReplacingValueWithTheSameValueErrorDoesNotOccur()
+        {
+            uniqueList.AddNodeByPosition(0, 100);
+            uniqueList.ChangeNodeValueByPosition(0, 100);
+            Assert.Pass();
         }
     }
 }

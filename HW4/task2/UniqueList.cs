@@ -25,7 +25,7 @@ namespace Task2
 
         public override void ChangeNodeValueByPosition(int position, T value)
         {
-            if (Contains(value))
+            if (Contains(value) && (position != GetValuePositionByValue(value)))
             {
                 throw new ItemAlreadyImplementedException($"Element {value} already exist.");
             }
@@ -39,7 +39,7 @@ namespace Task2
         /// Delete an item in a list.
         /// </summary>
         /// <param name="data">Element for deletion.</param>
-        public override void DeleteValueByValue( T data)
+        public override void DeleteValueByValue(T data)
         {
             if (Contains(data))
             {
