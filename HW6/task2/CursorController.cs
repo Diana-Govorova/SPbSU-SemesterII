@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Task2
 {
+    /// <summary>
+    /// Class that shows the position of the player on the screen.
+    /// </summary>
     class CursorController
     {
         private Map mapArray;
