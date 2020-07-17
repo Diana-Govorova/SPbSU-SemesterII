@@ -146,7 +146,7 @@ namespace Task2
                 head.Data = value;
                 return;
             }
-            shiftToCertainPosition(position).Data = value;
+            ShiftToCertainPosition(position).Data = value;
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Task2
             {
                 return head.Data;
             }
-            return shiftToCertainPosition(position).Data;
+            return ShiftToCertainPosition(position).Data;
         }
 
         /// <summary>

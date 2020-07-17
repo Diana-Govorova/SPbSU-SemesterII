@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Task2
 {
+    /// <summary>
+    /// Implementation of a list without repeating elements.
+    /// </summary>
+    /// <typeparam name="T">Unique list's element type.</typeparam>
     public class UniqueList<T> : LinkedList<T>
     {
         /// <summary>
