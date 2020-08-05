@@ -75,7 +75,7 @@ namespace Task2
         {
             uniqueList.AddNodeByPosition(0, 100);
             uniqueList.AddNodeByPosition(1, 500);
-            Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.ChangeNodeValueByPosition(2, 100));
+            Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.ChangeNodeValueByPosition(1, 100));
         }
 
         [Test]
