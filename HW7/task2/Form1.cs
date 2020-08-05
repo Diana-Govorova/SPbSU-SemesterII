@@ -10,17 +10,37 @@ using System.Windows.Forms;
 
 namespace Task2
 {
+    /// <summary>
+    /// Analog circle clock.
+    /// </summary>
     public partial class  Clock : Form
     {
-        Timer t = new Timer();
+        private Timer timer = new Timer();
 
-        int WIDTH = 300, HEIGHT = 300, secHAND = 140, minHAND = 110, hrHAND = 80;
+        private const int width = 300;
+        private const int height = 300;
+        private const int lengthOfSecondHand = 140;
+        private const int lengthOfMinuteHand = 110;
+        private const int lengthOfHourHand = 80;
 
+        private Coordinate centerCoordinate;
         //center
         int cx, cy;
 
-        Bitmap bmp;
-        Graphics g;
+        private Bitmap bitmap;
+        private Graphics graphics;
+
+        private struct Coordinate
+        {
+            public int xCoordinate;
+            public int yCoordinate;
+
+            public Coordinate(int xCoordinate, int yCoordinate)
+            {
+                this.xCoordinate = xCoordinate;
+                this.yCoordinate = yCoordinate;
+            }
+        }
 
         public Clock()
         {
@@ -29,26 +49,25 @@ namespace Task2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //create bitmap
-            bmp = new Bitmap(WIDTH + 1, HEIGHT + 1);
+            
+            bitmap = new Bitmap(width + 1, height + 1);
 
-            //center
-            cx = WIDTH / 2;
-            cy = HEIGHT / 2;
-
-            //backcolor
+            centerCoordinate = new Coordinate();
+            centerCoordinate.xCoordinate = width / 2;
+            centerCoordinate.yCoordinate = height / 2;
             this.BackColor = Color.White;
-
-            //timer
-            t.Interval = 1000;      //in millisecond
-            t.Tick += new EventHandler(this.t_Tick);
-            t.Start();
+            timer.Interval = 1000;
+            timer.Tick += new EventHandler(this.timerTick);
+            timer.Start();
         }
 
-        private void t_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Clock face.
+        /// </summary>
+        /// <param name="sender"></param>
+        private void timerTick(object sender, EventArgs e)
         {
-            //create graphics
-            g = Graphics.FromImage(bmp);
+            graphics = Graphics.FromImage(bitmap);
 
             //get time
             int ss = DateTime.Now.Second;
