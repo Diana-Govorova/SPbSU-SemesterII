@@ -15,7 +15,7 @@ namespace Task2
         /// Implementation of the <see cref="LinkedList"/>'s Node class.
         /// </summary>
         /// <typeparam name="T">Type of data storaged within the element</typeparam>
-        protected class Node // LinkedList's element
+        private class Node // LinkedList's element
         {
             public Node(T data)
             {
@@ -24,10 +24,9 @@ namespace Task2
             public T Data { get; set; }
          
             public Node Next { get; set; }
-           
         }
 
-        protected Node head;
+        private Node head;
         private int size;
 
         /// <summary>

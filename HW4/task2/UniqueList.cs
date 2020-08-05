@@ -29,7 +29,7 @@ namespace Task2
 
         public override void ChangeNodeValueByPosition(int position, T value)
         {
-            if (Contains(value) && (position != GetValuePositionByValue(value)))
+            if (!this.GetNodeValueByPosition(position).Equals(value))
             {
                 throw new ItemAlreadyImplementedException($"Element {value} already exist.");
             }
