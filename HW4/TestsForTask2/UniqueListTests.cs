@@ -34,7 +34,6 @@ namespace Task2
             Assert.Throws<ItemAlreadyImplementedException>(() => uniqueList.AddNodeByPosition(1, 100));
         }
 
-
         [Test]
         public void ListShouldThrowExceptionIfTryDeleteNonexistentElementTest()
         {
