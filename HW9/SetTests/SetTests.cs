@@ -46,7 +46,7 @@ namespace Task1
         public void AdditionRepeatingElementTest1()
         {
             Assert.IsFalse(intSet.Add(7));
-            Assert.IsTrue(intSet.Count == 5);
+            Assert.AreEqual(intSet.Count, 5);
         }
 
         [Test]
