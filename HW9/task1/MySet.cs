@@ -7,7 +7,7 @@ using System.Linq;
 namespace Task1
 {
     /// <summary>
-    /// 
+    /// Collection of distinct objects.
     /// </summary>
     /// <typeparam name="T">Type of the stored elements.</typeparam>
     public class MySet<T> : ISet<T>
@@ -21,17 +21,15 @@ namespace Task1
             this.comparer = comparer;
         }
 
-        private class TreeNode : IEnumerable<T>
+        /// <summary>
+        /// Tree's element.
+        /// </summary>
+        private class TreeNode
         {
             /// <summary>
             /// Gets or sets node value.
             /// </summary>
             public T Value { get; set; }
-
-            /// <summary>
-            /// Gets or sets parent.
-            /// </summary>
-            public TreeNode Parent { get; set; }
 
             /// <summary>
             /// Gets or sets left node.
@@ -56,17 +54,6 @@ namespace Task1
             ///  Initializes a new element of the <see cref="TreeNode"/> class.
             /// </summary>
             /// <param name="value">Node value.</param>
-            /// <param name="parent">Node's parent.</param>
-            public TreeNode(T value, TreeNode parent)
-            {
-                Value = value;
-                Parent = parent;
-            }
-
-            /// <summary>
-            ///  Initializes a new element of the <see cref="TreeNode"/> class.
-            /// </summary>
-            /// <param name="value">Node value.</param>
             /// <param name="leftChild">Left node.</param>
             /// <param name="rightChild">Right node.</param>
             public TreeNode(T value, TreeNode leftChild, TreeNode rightChild)
@@ -80,52 +67,17 @@ namespace Task1
             /// Checks if the node has no children.
             /// </summary>
             public bool IsFeaf => LeftChild == null && RightChild == null;
-
-            /// <summary>
-            /// Get set enumerator function.
-            /// </summary>
-            /// <returns>Set elements enumerator.</returns>
-            public IEnumerator<T> GetEnumerator()
-            {
-                if (LeftChild != null)
-                {
-                    foreach(var item in LeftChild)
-                    {
-                        yield return item;
-                    }
-                }
-
-                yield return Value;
-
-                if (RightChild != null)
-                {
-                    foreach (var item in RightChild)
-                    {
-                        yield return item;
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Get set enumerator function.
-            /// </summary>
-            /// <returns>Set elements enumerator.</returns>
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return GetEnumerator();
-            }
         }
-
 
         public int Count => count;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
         public bool Add(T item)
         {
             if (root == null)
             {
-                root = new TreeNode(item, null);
+                root = new TreeNode(item);
                 count++;
                 return true;
             }
@@ -138,7 +90,7 @@ namespace Task1
                 {
                     if (currentNode.LeftChild == null)
                     {
-                        currentNode.LeftChild = new TreeNode(item, currentNode);
+                        currentNode.LeftChild = new TreeNode(item);
                         count++;
                         return true;
                     }
@@ -149,7 +101,7 @@ namespace Task1
                 {
                     if (currentNode.RightChild == null)
                     {
-                        currentNode.RightChild = new TreeNode(item, currentNode);
+                        currentNode.RightChild = new TreeNode(item);
                         count++;
                         return true;
                     }
@@ -161,7 +113,6 @@ namespace Task1
                 }
             }
         }
-
 
         public void Clear()
         {
@@ -219,20 +170,10 @@ namespace Task1
                 return;
             }
 
-            foreach(var item in other)
+            foreach (var item in other)
             {
                 Remove(item);
             }
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            if (root != null)
-            {
-                return root.GetEnumerator();
-            }
-
-            return Enumerable.Empty<T>().GetEnumerator();
         }
 
         public void IntersectWith(IEnumerable<T> other)
@@ -434,9 +375,12 @@ namespace Task1
 
         public void UnionWith(IEnumerable<T> other)
         {
-            foreach (var item in other)
+            if (other != this)
             {
-                Add(item);
+                foreach (var item in other)
+                {
+                    Add(item);
+                }
             }
         }
 
@@ -448,6 +392,32 @@ namespace Task1
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            List<T> list = new List<T>();
+            GetEnumeratorResursiv(root, list);
+            return list.GetEnumerator();
+        }
+
+        private void GetEnumeratorResursiv(TreeNode treeNode, List<T> list)
+        {
+            if (treeNode == null)
+            {
+                return;
+            }
+            if (treeNode.LeftChild != null)
+            {
+                GetEnumeratorResursiv(treeNode.LeftChild, list);
+            }
+
+            list.Add(treeNode.Value);
+
+            if (root.RightChild != null)
+            {
+                GetEnumeratorResursiv(treeNode.RightChild, list);
+            }
         }
     }
 }

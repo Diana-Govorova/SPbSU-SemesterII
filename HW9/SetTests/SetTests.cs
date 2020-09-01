@@ -19,7 +19,7 @@ namespace Task1
         {
             intSet.Add(-34);
             Assert.IsTrue(intSet.Contains(-34));
-            Assert.AreEqual(intSet.Count, 6);
+            Assert.AreEqual(6, intSet.Count);
         }
 
         [Test]
@@ -160,7 +160,6 @@ namespace Task1
         public void RemoveTest1()
         {
             intSet.Remove(-25);
-
             Assert.AreEqual(new MySet<int>(new IntComparer()) { 0, 7, 13, 34 }, intSet);
         }
 
@@ -168,7 +167,6 @@ namespace Task1
         public void RemoveTest2()
         {
             intSet.Remove(7);
-
             Assert.AreEqual(new MySet<int>(new IntComparer()) { -25, 0, 13, 34 }, intSet);
         }
 
@@ -208,6 +206,19 @@ namespace Task1
         {
             intSet.UnionWith(new int[4] { 69, 55, 7, 13 });
             Assert.IsTrue(intSet.SetEquals(new int[7] { -25, 7, 0, 13, 34, 69, 55 }));
+        }
+
+        [Test]
+        public void ForeachTest()
+        {
+            var array = new int[5];
+            int i = 0;
+            foreach (var item in intSet)
+            {
+                array[i] = item;
+                i++;
+            }
+            Assert.AreEqual(new int[] { -25, 0, 7, 13, 34 }, array);
         }
     }
 }
