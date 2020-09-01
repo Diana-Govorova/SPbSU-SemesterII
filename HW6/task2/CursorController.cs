@@ -33,6 +33,11 @@ namespace Task2
             mapArray.Print();
         }
 
+		/// <summary>
+		/// Change location of character.
+		/// </summary>
+		/// <param name="x">Current  rows.</param>
+		/// <param name="y">Current columns.</param>
         public void OnAction(int x, int y)
         {
             var (x1, y1) = mapArray.PlayerPosition;

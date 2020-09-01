@@ -5,7 +5,6 @@ namespace Task2
 {
     public class MapTests
     {
-
         private Map map;
 
         private CursorController controller;
@@ -31,9 +30,7 @@ namespace Task2
         [Test]
         public void ConstructorTest()
         {
-            
             char[,] mapArrayTest = new char[5, 5] { { '#', '#', '#', '#', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', ' ', '@', ' ', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', '#', '#', '#', '#' } };
-
             Assert.AreEqual(mapArrayTest, map.MapArray);
         }
 
@@ -68,14 +65,18 @@ namespace Task2
         [Test]
         public void MoveRightMoveDown()
         {
-            controller.OnUp(null, null);
-            Assert.AreEqual((2, 1), controller.PlayerPosition);
+            controller.OnRight(null, null);
+			controller.OnDown(null, null);
+			Assert.AreEqual((3, 3), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveLeftMoveDownMoveLeft()
         {
-            Assert.AreEqual((2, 2), controller.PlayerPosition);
+			controller.OnLeft(null, null);
+			controller.OnDown(null, null);
+			controller.OnLeft(null, null);
+			Assert.AreEqual((1, 3), controller.PlayerPosition);
         }
     }
 }

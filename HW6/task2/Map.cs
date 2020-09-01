@@ -62,7 +62,7 @@ namespace Task2
 
             while (reader.Peek() > -1)
             {
-                currentSymbol = (char)reader.Read();
+                 currentSymbol = (char)reader.Read();
                  if (currentSymbol == '#' || currentSymbol == ' ' || currentSymbol == '@')
                  {
                     if (currentSymbol != '\r')
@@ -88,13 +88,19 @@ namespace Task2
         /// <summary>
         /// Checks if coordinates are within the map.
         /// </summary>
-        /// <param name="x">Current row.</param>
-        /// <param name="y">Current column.</param>
+        /// <param name="x">Current column.</param>
+        /// <param name="y">Current row.</param>
         /// <returns>If coordinates are within the map.</returns>
         private bool IsOnMap(int x, int y)
             => (y <= rows - 1) && (x <= columns - 1) && (x >= 0) && (y >= 0);
 
-        public bool CanGo(int x, int y)
+		/// <summary>
+		/// Checks if move coordinates are within the map.
+		/// </summary>
+		/// <param name="x">Current column.</param>
+		/// <param name="y">Current row.</param>
+		/// <returns>if move coordinates are within the map.</returns>
+		public bool CanGo(int x, int y)
             => IsOnMap(x, y) && (mapArray[x, y] != '#');
 
         /// <summary>
