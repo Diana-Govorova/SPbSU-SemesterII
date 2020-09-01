@@ -8,6 +8,8 @@ namespace Task2
 
         private Map map;
 
+        private CursorController controller;
+
         [SetUp]
         public void Setup()
         {
@@ -20,13 +22,16 @@ namespace Task2
 #####");
             }
 
-            map = new Map("test.txt");
+            controller = new CursorController(@"test.txt", (int a, int b) => { });
+            map = new Map(@"test.txt");
+
             File.Delete("test.txt");
         }
 
         [Test]
         public void ConstructorTest()
         {
+            
             char[,] mapArrayTest = new char[5, 5] { { '#', '#', '#', '#', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', ' ', '@', ' ', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', '#', '#', '#', '#' } };
 
             Assert.AreEqual(mapArrayTest, map.MapArray);
@@ -35,54 +40,42 @@ namespace Task2
         [Test]
         public void MoveUpTest()
         {
-            map.MoveUp();
-            map.MoveUp();
-            map.MoveUp();
-            Assert.AreEqual((1, 2), map.PlayerPosition);
+            controller.OnUp(null, null);
+            Assert.AreEqual((2, 1), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveDownTest()
         {
-            map.MoveDown();
-            map.MoveDown();
-            Assert.AreEqual((3, 2), map.PlayerPosition);
+            controller.OnDown(null, null);
+            Assert.AreEqual((2, 3), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveLeftTest()
         {
-            map.MoveLeft();
-            map.MoveLeft();
-            Assert.AreEqual((2, 1), map.PlayerPosition);
+            controller.OnLeft(null, null);
+            Assert.AreEqual((1, 2), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveRightTest()
         {
-            map.MoveRight();
-            map.MoveRight();
-
-            Assert.AreEqual((2, 3), map.PlayerPosition);
+            controller.OnRight(null, null);
+            Assert.AreEqual((3, 2), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveRightMoveDown()
         {
-            map.MoveRight();
-            map.MoveDown();
-
-            Assert.AreEqual((3, 3), map.PlayerPosition);
+            controller.OnUp(null, null);
+            Assert.AreEqual((2, 1), controller.PlayerPosition);
         }
 
         [Test]
         public void MoveLeftMoveDownMoveLeft()
         {
-            map.MoveLeft();
-            map.MoveDown();
-            map.MoveLeft();
-
-            Assert.AreEqual((3, 1), map.PlayerPosition);
+            Assert.AreEqual((2, 2), controller.PlayerPosition);
         }
     }
 }

@@ -8,16 +8,16 @@ namespace Task2
         static void Main(string[] args)
         {
             var eventLoop = new EventLoop();
-            using (StreamWriter sw = new StreamWriter("test.txt"))
+            using (var sw = new StreamWriter("test.txt"))
             {
-                sw.Write(@"#####
-#@  #
-##  #
-#  ##
-# # #");
+                sw.Write(@"## ####
+#@  ###
+##   ##
+   
+# # #  ");
             }
 
-            var controller = new CursorController(@"test.txt");
+            var controller = new CursorController(@"test.txt", Console.SetCursorPosition);
 
             File.Delete("test.txt");
 

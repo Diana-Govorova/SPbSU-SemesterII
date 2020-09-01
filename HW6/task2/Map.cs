@@ -12,11 +12,7 @@ namespace Task2
     {
         private int rows;
 
-        public int Rows { get; }
-
         private int columns;
-
-        public int Columns { get; }
 
         private char[,] mapArray;
 
@@ -24,7 +20,7 @@ namespace Task2
 
         private (int, int) playerPosition = (-1, -1);
 
-        public (int, int) PlayerPosition { get => playerPosition; }
+        public (int x, int y) PlayerPosition { get => playerPosition; set => playerPosition = value; }
 
         /// <summary>
         /// Constructor, that builds the map from input file.
@@ -32,7 +28,7 @@ namespace Task2
         /// <param name="path">Path to the input file.</param>
         public Map(string path)
         {
-            StreamReader reader = new StreamReader(path);
+            var reader = new StreamReader(path);
 
             char currentSymbol;
             int i = 1;
@@ -53,7 +49,7 @@ namespace Task2
                 }
             }
 
-            mapArray = new char[i, j];
+            mapArray = new char[j, i];
 
             rows = i;
             columns = j;
@@ -71,10 +67,10 @@ namespace Task2
                  {
                     if (currentSymbol != '\r')
                     {
-                        mapArray[i, j] = currentSymbol;
+                        mapArray[j, i] = currentSymbol;
                         if (currentSymbol == '@')
                         {
-                            playerPosition = (i, j);
+                            playerPosition = (j, i);
                         }
                         j++;
                     }
@@ -96,63 +92,10 @@ namespace Task2
         /// <param name="y">Current column.</param>
         /// <returns>If coordinates are within the map.</returns>
         private bool IsOnMap(int x, int y)
-            => (x <= rows - 1) && (y <= columns - 1);
+            => (y <= rows - 1) && (x <= columns - 1) && (x >= 0) && (y >= 0);
 
-        /// <summary>
-        /// Moves character up.
-        /// </summary>
-        public void MoveUp()
-        {
-            if (IsOnMap(playerPosition.Item1 - 1, playerPosition.Item2)
-                && mapArray[playerPosition.Item1 - 1, playerPosition.Item2] != '#')
-            {
-                mapArray[playerPosition.Item1, playerPosition.Item2] = ' ';
-                mapArray[playerPosition.Item1 - 1, playerPosition.Item2] = '@';
-                playerPosition.Item1--;
-            }
-        }
-
-        /// <summary>
-        /// Moves character down.
-        /// </summary>
-        public void MoveDown()
-        {
-            if (IsOnMap(playerPosition.Item1 + 1, playerPosition.Item2)
-                && mapArray[playerPosition.Item1 + 1, playerPosition.Item2] != '#')
-            {
-                mapArray[playerPosition.Item1, playerPosition.Item2] = ' ';
-                mapArray[playerPosition.Item1 + 1, playerPosition.Item2] = '@';
-                playerPosition.Item1++;
-            }
-        }
-
-        /// <summary>
-        /// Moves character left.
-        /// </summary>
-        public void MoveLeft()
-        {
-            if (IsOnMap(playerPosition.Item1, playerPosition.Item2 - 1)
-                && mapArray[playerPosition.Item1, playerPosition.Item2 - 1] != '#')
-            {
-                mapArray[playerPosition.Item1, playerPosition.Item2] = ' ';
-                mapArray[playerPosition.Item1, playerPosition.Item2 - 1] = '@';
-                playerPosition.Item2--;
-            }
-        }
-
-        /// <summary>
-        /// Moves character right.
-        /// </summary>
-        public void MoveRight()
-        {
-            if (IsOnMap(playerPosition.Item1, playerPosition.Item2 + 1)
-                && mapArray[playerPosition.Item1, playerPosition.Item2 + 1] != '#')
-            {
-                mapArray[playerPosition.Item1, playerPosition.Item2] = ' ';
-                mapArray[playerPosition.Item1, playerPosition.Item2 + 1] = '@';
-                playerPosition.Item2++;
-            }
-        }
+        public bool CanGo(int x, int y)
+            => IsOnMap(x, y) && (mapArray[x, y] != '#');
 
         /// <summary>
         /// Print the map.
@@ -161,11 +104,11 @@ namespace Task2
         {
             for (int i = 0; i < rows; i++)
             {
-                Console.WriteLine();
                 for (int j = 0; j < columns; j++)
                 {
-                    Console.Write(mapArray[i, j]);
+                    Console.Write(mapArray[j, i]);
                 }
+                Console.WriteLine();
             }
         }
     }

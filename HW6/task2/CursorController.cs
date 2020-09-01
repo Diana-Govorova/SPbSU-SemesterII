@@ -7,17 +7,22 @@ namespace Task2
     /// <summary>
     /// Class that shows the position of the player on the screen.
     /// </summary>
-    class CursorController
+    public class CursorController
     {
         private Map mapArray;
+
+        private Action<int, int> action;
+
+        public (int, int) PlayerPosition { get => mapArray.PlayerPosition; }
 
         /// <summary>
         /// Constructor, that builds the map from input file.
         /// </summary>
         /// <param name="path">Path to the input file.</param>
-        public CursorController(string path)
+        public CursorController(string path, Action <int, int> action)
         {
             mapArray = new Map(path);
+            this.action = action;
         }
 
         /// <summary>
@@ -28,44 +33,37 @@ namespace Task2
             mapArray.Print();
         }
 
+        public void OnAction(int x, int y)
+        {
+            var (x1, y1) = mapArray.PlayerPosition;
+            if (mapArray.CanGo(x1 + x, y1 + y))
+            {
+                action(x1, y1);
+                Console.Write(' ');
+                action(x1 + x, y1 + y);
+                Console.Write('@');
+                mapArray.PlayerPosition = (x1 + x, y1 + y);
+            }
+        }
+
         /// <summary>
         /// Moves up and print the updated map.
         /// </summary>
-        public void OnUp(object sender, EventArgs args)
-        {
-            Console.Clear();
-            mapArray.MoveUp();
-            mapArray.Print();
-        }
+        public void OnUp(object sender, EventArgs args) => OnAction(0, -1);
 
         /// <summary>
         /// Moves down and print the updated map.
         /// </summary>
-        public void OnDown(object sender, EventArgs args)
-        {
-            Console.Clear();
-            mapArray.MoveDown();
-            mapArray.Print();
-        }
+        public void OnDown(object sender, EventArgs args) => OnAction(0, 1);
 
         /// <summary>
         /// Moves left and print the updated map.
         /// </summary>
-        public void OnLeft(object sender, EventArgs args)
-        {
-            Console.Clear();
-            mapArray.MoveLeft();
-            mapArray.Print();
-        }
+        public void OnLeft(object sender, EventArgs args) => OnAction(-1, 0);
 
         /// <summary>
         /// Moves right and print the updated map.
         /// </summary>
-        public void OnRight(object sender, EventArgs args)
-        {
-            Console.Clear();
-            mapArray.MoveRight();
-            mapArray.Print();
-        }
+        public void OnRight(object sender, EventArgs args) => OnAction(1, 0);
     }
 }
