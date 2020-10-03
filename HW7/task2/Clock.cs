@@ -49,7 +49,7 @@ namespace Task2
         public Clock()
         {
             InitializeComponent();
-            clockFace();
+            ClockFace();
             timer.Interval = 1000;
             timer.Tick += new EventHandler(this.Tick);
             timer.Start();
@@ -58,7 +58,7 @@ namespace Task2
         /// <summary>
         /// Draw a clock's face.
         /// </summary>
-        private void clockFace()
+        private void ClockFace()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
@@ -75,29 +75,27 @@ namespace Task2
         /// <summary>
         /// Clock's tick.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Tick(object sender, EventArgs e)
         {
             Bitmap tickBitmap = (Bitmap)bitmap.Clone();
             graphics = Graphics.FromImage(tickBitmap);
-            Coordinate handCoordinate = new Coordinate();
 
             int second = DateTime.Now.Second;
             int minute = DateTime.Now.Minute;
             int hour= DateTime.Now.Hour;
 
-            handCoordinate = minuteOrSecondHandCoordinate(second, lengthOfSecondHand);
+            var handCoordinate = minuteOrSecondHandCoordinate(second, lengthOfSecondHand);
             graphics.DrawLine(new Pen(Color.Red, 1f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
 
             handCoordinate = minuteOrSecondHandCoordinate(minute, lengthOfMinuteHand);
             graphics.DrawLine(new Pen(Color.Black, 2f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
 
-            handCoordinate = hourHandCoordinate(hour % 12, minute, lengthOfHourHand);
+            handCoordinate = HourHandCoordinate(hour % 12, minute, lengthOfHourHand);
             graphics.DrawLine(new Pen(Color.Black, 3f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
 
             pictureBox1.Image = tickBitmap;
         }
+
         /// <summary>
         /// Coordinate for minute and second hand.
         /// </summary>
@@ -129,7 +127,7 @@ namespace Task2
         /// <param name="minuteValue">Minute value.</param>
         /// <param name="handLength">Hand length.</param>
         /// <returns>Coordinate of clock's hands.</returns>
-        private Coordinate hourHandCoordinate(int hourValue, int minuteValue, int handLength)
+        private Coordinate HourHandCoordinate(int hourValue, int minuteValue, int handLength)
         {
             var coordinate = new Coordinate();
             int value = (int)((hourValue * 30) + (minuteValue * 0.5));

@@ -65,7 +65,7 @@ namespace Task2
         /// Clock face.
         /// </summary>
         /// <param name="sender"></param>
-        private void timerTick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
             graphics = Graphics.FromImage(bitmap);
 
@@ -113,7 +113,7 @@ namespace Task2
         /// <summary>
         /// Coord for minute and second hand.
         /// </summary>
-        private int[] msCoord(int val, int hlen)
+        private int[] MsCoord(int val, int hlen)
         {
             int[] coord = new int[2];
             val *= 6;   //each minute and second make 6 degree
@@ -134,7 +134,7 @@ namespace Task2
         /// <summary>
         /// Coord for hour hand.
         /// </summary>
-        private int[] hrCoord(int hval, int mval, int hlen)
+        private int[] HrCoord(int hval, int mval, int hlen)
         {
             int[] coord = new int[2];
 
