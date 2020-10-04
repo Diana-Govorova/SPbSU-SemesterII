@@ -30,7 +30,12 @@ namespace Task2
         [Test]
         public void ConstructorTest()
         {
-            char[,] mapArrayTest = new char[5, 5] { { '#', '#', '#', '#', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', ' ', '@', ' ', '#' }, { '#', ' ', ' ', ' ', '#' }, { '#', '#', '#', '#', '#' } };
+            char[,] mapArrayTest = new char[5, 5] { 
+                                        { '#', '#', '#', '#', '#' }, 
+                                        { '#', ' ', ' ', ' ', '#' }, 
+                                        { '#', ' ', '@', ' ', '#' }, 
+                                        { '#', ' ', ' ', ' ', '#' }, 
+                                        { '#', '#', '#', '#', '#' } };
             Assert.AreEqual(mapArrayTest, map.MapArray);
         }
 
