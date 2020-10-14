@@ -84,10 +84,10 @@ namespace Task2
             int minute = DateTime.Now.Minute;
             int hour= DateTime.Now.Hour;
 
-            var handCoordinate = minuteOrSecondHandCoordinate(second, lengthOfSecondHand);
+            var handCoordinate = MinuteOrSecondHandCoordinate(second, lengthOfSecondHand);
             graphics.DrawLine(new Pen(Color.Red, 1f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
 
-            handCoordinate = minuteOrSecondHandCoordinate(minute, lengthOfMinuteHand);
+            handCoordinate = MinuteOrSecondHandCoordinate(minute, lengthOfMinuteHand);
             graphics.DrawLine(new Pen(Color.Black, 2f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
 
             handCoordinate = HourHandCoordinate(hour % 12, minute, lengthOfHourHand);
@@ -102,7 +102,7 @@ namespace Task2
         /// <param name="value">Minute or second value.</param>
         /// <param name="handLength">Hand length.</param>
         /// <returns>Coordinate of clock's hands.</returns>
-        private Coordinate minuteOrSecondHandCoordinate(int value, int handLength)
+        private Coordinate MinuteOrSecondHandCoordinate(int value, int handLength)
         {
             var coordinate = new Coordinate();
             value *= 6;
