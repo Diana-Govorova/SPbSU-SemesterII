@@ -24,6 +24,7 @@ namespace Task2
         private const int lengthOfHourHand = 80;
 
         private Coordinate centerCoordinate;
+
         //center
         int cx, cy;
 
