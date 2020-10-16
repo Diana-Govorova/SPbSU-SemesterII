@@ -27,12 +27,6 @@ namespace Task2
 		}
 
 		/// <summary>
-		/// Constructor that builds the map from input file.
-		/// </summary>
-		/// <param name="path">Path to the input file.</param>
-		/// 
-
-		/// <summary>
 		/// Prints the map.
 		/// </summary>
 		public void Print()

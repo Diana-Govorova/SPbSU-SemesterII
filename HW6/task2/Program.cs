@@ -10,11 +10,11 @@ namespace Task2
 			var eventLoop = new EventLoop();
 			using (var sw = new StreamWriter("test.txt"))
 			{
-				sw.Write(@"## ####
-#@  ###
-##   ##
-   
-# # #  ");
+				sw.Write(@"## ##
+#@  #
+##   
+     
+# # #");
             }
 
 			var controller = new CursorController(@"test.txt", Console.SetCursorPosition);

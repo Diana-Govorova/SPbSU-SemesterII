@@ -10,7 +10,7 @@ namespace Task2
 	/// </summary>
 	public class Map
 	{
-		public char[,] MapArray { get; private set; }
+		public bool[,] MapArray { get; private set; }
 
 		private (int, int) playerPosition = (-1, -1);
 
@@ -22,58 +22,58 @@ namespace Task2
 		/// <param name="path">Path to the input file.</param>
 		public Map(string path)
 		{
-			var reader = new StreamReader(path) ;
-
-			char currentSymbol;
-			int i = 1;
-			int j = 0;
-
-			while (reader.Peek() > -1)
+			string line;
+			using (var sr = new StreamReader(path))
 			{
-				currentSymbol = (char)reader.Read();
-				if (currentSymbol != '\n')
-				{
-					if (currentSymbol != '\r')
-					j++;
-				}
-				else
-				{
-					i++;
-					j = 0;
-				}
+				line = sr.ReadToEnd();
 			}
+			ReadTheMap(line);
+		}
 
-			var mapArray = new char[j, i];
+		public void ReadTheMap(string line)
+		{
+			int column = 0;
+			int maxColumn = 0;
+			int stringCounter = 0;
 
-			i = 0;
-			j = 0;
-
-			reader.DiscardBufferedData();
-			reader.BaseStream.Seek(0, SeekOrigin.Begin);
-
-			while (reader.Peek() > -1)
+			for (int i = 0; i < line.Length; i++)
 			{
-				currentSymbol = (char)reader.Read();
-				if (currentSymbol == '#' || currentSymbol == ' ' || currentSymbol == '@')
+				if (line[i] != '\n' && line[i] != '\r')
 				{
-					if (currentSymbol != '\r')
+					column++;
+				}
+				if (line[i] == '\n' || i == line.Length - 1)
+				{
+					stringCounter++;
+					if (column > maxColumn)
 					{
-						mapArray[j, i] = currentSymbol;
-						if (currentSymbol == '@')
-						{
-							playerPosition = (j, i);
-						}
-						j++;
+						maxColumn = column;
 					}
-				}
-				else if (currentSymbol == '\n')
-				{
-					i++;
-					j = 0;
+					column = 0;
 				}
 			}
 
-			reader.Close();
+			MapArray = new bool[stringCounter, maxColumn];
+
+			int k = 0;
+			int p = 0;
+			for (int count = 0; count < line.Length; count++)
+			{
+				if (line[count] == '@')
+				{
+					playerPosition = (p, k);
+				}
+				if (line[count] == '#')
+				{
+					MapArray[k, p] = true;
+				}
+				if (line[count] == '\n')
+				{
+					k++;
+					p = -1;
+				}
+				p++;
+			}
 		}
 
 		/// <summary>
@@ -83,7 +83,7 @@ namespace Task2
 		/// <param name="y">Current row.</param>
 		/// <returns>If coordinates are within the map.</returns>
 		private bool IsOnMap(int x, int y)
-			=> (y <= rows - 1) && (x <= columns - 1) && (x >= 0) && (y >= 0);
+			=> (y <= MapArray.GetLength(0) - 1) && (x <= MapArray.GetLength(1) - 1) && (x >= 0) && (y >= 0);
 
 		/// <summary>
 		/// Checks if move coordinates are within the map.
@@ -92,7 +92,7 @@ namespace Task2
 		/// <param name="y">Current row.</param>
 		/// <returns>if move coordinates are within the map.</returns>
 		public bool CanGo(int x, int y)
-			=> IsOnMap(x, y) && (mapArray[x, y] != '#');
+			=> IsOnMap(x, y) && (MapArray[y, x] == false);
 
 		/// <summary>
 		/// Print the map.
@@ -103,7 +103,18 @@ namespace Task2
 			{
 				for (int j = 0; j < MapArray.GetLength(1); j++)
 				{
-					Console.Write(mapArray[j, i]);
+					if (playerPosition == (j, i))
+					{
+						Console.Write('@');
+					}
+					else if (MapArray[i, j])
+					{
+						Console.Write('#');
+					}
+					else
+					{
+						Console.Write(' ');
+					}
 				}
 				Console.WriteLine();
 			}
