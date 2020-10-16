@@ -1,7 +1,7 @@
 ﻿namespace Task1
 {
-    public class Multiplication : Operation
-    {
+	public class Multiplication : Operation
+	{
 		/// <summary>
 		/// Sign of multiplication.
 		/// </summary>

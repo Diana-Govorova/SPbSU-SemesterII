@@ -54,7 +54,6 @@ namespace Task1
 			Assert.Throws<InvalidExpressionException>(() => tree.BuildTree("(- (* 25 (- 70 35))(/ (* (+ 15 110)) 7))"));
 		}
 
-
 		[Test]
 		public void InvalidExpressionTest2()
 		{

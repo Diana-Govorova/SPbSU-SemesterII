@@ -6,8 +6,8 @@ namespace Task1
 	/// Class with an implementation of the tree.
 	/// </summary>
 	public class Tree
-    {
-        private INode tree;
+	{
+		private INode tree;
 
 		/// <summary>
 		/// checking expression for correctness.
@@ -154,5 +154,5 @@ namespace Task1
 		/// </summary>
 		public void PrintTree() 
 			=> tree.Print();
-    }
+	}
 }

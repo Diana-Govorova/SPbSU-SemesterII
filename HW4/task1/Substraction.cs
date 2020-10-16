@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Substraction's class.
 	/// </summary>
-    public class Substraction : Operation
+	public class Substraction : Operation
 	{
 		/// <summary>
 		/// Sign of substraction.

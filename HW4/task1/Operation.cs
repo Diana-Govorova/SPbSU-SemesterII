@@ -11,12 +11,12 @@ namespace Task1
 		
 		public INode Left { get; set; }
 
-        public INode Right { get; set; }
+		public INode Right { get; set; }
 
 		/// <summary>
 		/// Print the expression.
 		/// </summary>
-        public void Print()
+		public void Print()
 		{
 			Console.Write("(");
 			Left.Print();
@@ -30,5 +30,5 @@ namespace Task1
 		/// </summary>
 		/// <returns>Result.</returns>
 		abstract public double Counting();
-    }
+	}
 }

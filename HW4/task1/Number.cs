@@ -2,11 +2,11 @@
 
 namespace Task1
 {
-    /// <summary>
-    /// Implementation of Number class
-    /// </summary>
-    public class Number : INode
-    {
+	/// <summary>
+	/// Implementation of Number class
+	/// </summary>
+	public class Number : INode
+	{
 		/// <summary>
 		/// Number`s value.
 		/// </summary>
@@ -33,5 +33,5 @@ namespace Task1
 		/// <returns>Value.</returns>
 		public double Counting()
 			=> Value;
-    }
+	}
 }

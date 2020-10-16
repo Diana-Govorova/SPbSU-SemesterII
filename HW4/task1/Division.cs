@@ -2,8 +2,8 @@
 
 namespace Task1
 {
-    public class Division : Operation
-    {
+	public class Division : Operation
+	{
 		/// <summary>
 		/// Sign of division.
 		/// </summary>
@@ -23,5 +23,5 @@ namespace Task1
 			}
 			return value1 / value2;
 		}
-    }
+	}
 }

@@ -1,10 +1,10 @@
 ﻿namespace Task1
 {
-    /// <summary>
-    /// Addition class.
-    /// </summary>
-    public class Addition : Operation
-    {
+	/// <summary>
+	/// Addition class.
+	/// </summary>
+	public class Addition : Operation
+	{
 		/// <summary>
 		/// Sign of addition.
 		/// </summary>
@@ -16,5 +16,5 @@
 		/// <returns>Result of operation.</returns>
 		public override double Counting()
 			=> Left.Counting() + Right.Counting();
-    }
+	}
 }
