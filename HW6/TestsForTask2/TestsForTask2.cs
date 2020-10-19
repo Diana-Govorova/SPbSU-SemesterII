@@ -85,7 +85,6 @@ namespace Task2
 			controller.OnRight(null, null);
 			controller.OnDown(null, null);
 			controller.OnRight(null, null);
-			//controller.OnRight(null, null);
 			Assert.AreEqual((4, 3), controller.PlayerPosition);
 		}
 
