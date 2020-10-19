@@ -97,4 +97,4 @@ namespace Task2
 			Assert.AreEqual((1, 3), controller.PlayerPosition);
 		}
 	}
-}
+} 
