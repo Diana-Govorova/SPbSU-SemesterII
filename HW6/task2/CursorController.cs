@@ -19,7 +19,7 @@ namespace Task2
 		/// Constructor that builds the map from input file.
 		/// </summary>
 		/// <param name="path">Path to the input file.</param>
-		/// <param name="action">Move coordinates.</param>
+		/// <param name="action">Move to coordinates.</param>
 		public CursorController(string path, Action<int, int> action)
 		{
 			mapArray = new Map(path);
