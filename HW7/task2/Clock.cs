@@ -7,7 +7,7 @@ namespace Task2
 	/// <summary>
 	/// Analog circle clock.
 	/// </summary>
-	public partial class  Clock : Form
+	public partial class Clock : Form
 	{
 		private Timer timer = new Timer();
 		private const int width = 300;
@@ -83,7 +83,7 @@ namespace Task2
 
 			int second = DateTime.Now.Second;
 			int minute = DateTime.Now.Minute;
-			int hour= DateTime.Now.Hour;
+			int hour = DateTime.Now.Hour;
 
 			var handCoordinate = MinuteOrSecondHandCoordinate(second, lengthOfSecondHand);
 			graphics.DrawLine(new Pen(Color.Red, 1f), new Point(clockCenter.xCoordinate, clockCenter.yCoordinate), new Point(handCoordinate.xCoordinate, handCoordinate.yCoordinate));
