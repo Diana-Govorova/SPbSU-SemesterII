@@ -60,7 +60,7 @@ namespace Task2
 		/// </summary>
 		private void ClockFace(object sender, EventArgs e)
 		{
-			bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+			var bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
 			graphics = Graphics.FromImage(bitmap);
 
