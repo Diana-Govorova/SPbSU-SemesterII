@@ -1,4 +1,3 @@
-  
 # Version format
 version: 1.0.{build}
 
@@ -13,9 +12,9 @@ configuration: Debug
 
 # MSBuild settings
 build:
-  project: HW9\task1\task1.sln
+  project: HW6\task2\task2.sln
   verbosity: quiet
 
 # Execute script before build
 before_build:
- - nuget restore HW9\task1\task1.sln
+ - nuget restore HW6\task2\task2.sln
