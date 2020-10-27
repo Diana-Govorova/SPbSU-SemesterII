@@ -32,6 +32,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
+			// timer
+			// 
+			this.timer.Enabled = true;
+			this.timer.Interval = 1;
+			this.timer.Tick += new System.EventHandler(this.Tick);
+			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;

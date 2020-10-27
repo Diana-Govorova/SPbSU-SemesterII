@@ -49,21 +49,36 @@ namespace Task2
 		public Clock()
 		{
 			InitializeComponent();
-			timer.Interval = 1000;
-			Tick(timer, EventArgs.Empty);
-			timer.Tick += new EventHandler(this.Tick);
-			timer.Start();
+			//ClockFace();
+			//timer.Interval = 1000;
+			//timer.Tick += new EventHandler(this.Tick);
+			//timer.Start();
 		}
+
+		/// <summary>
+		/// Draws the clock face and initializes clock hands.
+		/// </summary>
+		private void ClockFormLoad(object sender, EventArgs e)
+		{
+			bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+			graphics = Graphics.FromImage(bitmap);
+
+			ClockFace();
+
+			Tick(timer, EventArgs.Empty);
+		}
+			//secondHand = new Hand(new Point(0, -20), new Point(0, radius - 10), new Pen(Brushes.Red, 1));
+			//minuteHand = new Hand(new Point(0, -15), new Point(0, radius - 20), new Pen(Brushes.Black, 2));
+			//hourHand = new Hand(new Point(0, -10), new Point(0, radius - 60), new Pen(Brushes.Gray, 5));
+
+
 
 		/// <summary>
 		/// Draw a clock's face.
 		/// </summary>
-		private void ClockFace(object sender, EventArgs e)
+		private void ClockFace()
 		{
-			var bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
-			graphics = Graphics.FromImage(bitmap);
-
 			graphics.DrawEllipse(new Pen(Color.Black, 3), 50, 20, width, height);
 
 			graphics.DrawString("12", new Font("Arial", 12), Brushes.Black, new PointF(190, 24));
@@ -78,7 +93,7 @@ namespace Task2
 		/// </summary>
 		private void Tick(object sender, EventArgs e)
 		{
-			var tickBitmap = (Bitmap)bitmap.Clone();
+			Bitmap tickBitmap = (Bitmap)bitmap.Clone();
 			graphics = Graphics.FromImage(tickBitmap);
 
 			int second = DateTime.Now.Second;
