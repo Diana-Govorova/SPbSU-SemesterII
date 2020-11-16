@@ -13,9 +13,9 @@ configuration: Debug
 
 # MSBuild settings
 build:
-  project: HW1\task4\task4.sln
+  project: HW7\task1\task1.sln
   verbosity: quiet
 
 # Execute script before build
 before_build:
- - nuget restore HW1\task4\task4.sln
+ - nuget restore HW7\task1\task1.sln
