@@ -2,6 +2,9 @@
 
 namespace Task1
 {
+	/// <summary>
+	/// Сlass that implements the basic functions of a calculator.
+	/// </summary>
 	public class CalculatorLogic
 	{
 		private double result = 0;
@@ -44,13 +47,7 @@ namespace Task1
 						result = FirstNumber / SecondNumber;
 						break;
 					}
-				case '%':
-					{
-						result = FirstNumber / SecondNumber;
-						break;
-					}
 			}
-
 			FirstNumber = result;
 		}
 
@@ -71,6 +68,12 @@ namespace Task1
 		{
 			resultDivisedOfOne = 1 / FirstNumber;
 			FirstNumber = resultDivisedOfOne;
+		}
+
+		public void Percent(double resultOfPercent)
+		{
+			resultOfPercent = FirstNumber / 100;
+			FirstNumber = resultOfPercent;
 		}
 	}
 }

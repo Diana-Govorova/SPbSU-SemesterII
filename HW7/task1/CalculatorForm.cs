@@ -12,8 +12,11 @@ namespace Task1
 		{
 			InitializeComponent();
 			calculator = new CalculatorLogic();
-
 		}
+
+		/// <summary>
+		/// Performing an operation.
+		/// </summary>
 		public void Operation()
 		{
 			if (!calculator.IsOperationPressedEarly)
@@ -64,55 +67,28 @@ namespace Task1
 
 		private void inputSymbolButton_Click(object sender, EventArgs e)
 		{
-			calculator.IsContainDot = false;
-
-			if (inputAndOutputLineOfResult.Text.Length == 0 && inputAndOutputLineOfOperation.Text.Length == 0)
+			if (inputAndOutputLineOfResult.Text.Length == 0)
 			{
 				return;
 			}
 
-			if (calculator.IsEqualPressed)
+			double resultOfPercent = 0;
+			int count = 0;
+
+			try
 			{
 				calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
-				inputAndOutputLineOfOperation.Text += calculator.FirstNumber;
-				calculator.IsEqualPressed = false;
+				count++;
 			}
-
-			if (!calculator.IsOperationPressedEarly)
+			catch
 			{
-				try
-				{
-					calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
-					inputAndOutputLineOfResult.Clear();
-				}
-				catch
-				{
-					inputAndOutputLineOfResult.Text = "IncorrectInput";
-				}
-
-				calculator.Symbol = (sender as Button).Text[0];
-				inputAndOutputLineOfOperation.Text += calculator.Symbol;
-			}
-			else
-			{
-				try
-				{
-					calculator.SecondNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
-					inputAndOutputLineOfResult.Clear();
-				}
-				catch
-				{
-					inputAndOutputLineOfResult.Text = "IncorrectInput";
-				}
-
-				Operation();
-				calculator.Symbol = (sender as Button).Text[0];
-				inputAndOutputLineOfResult.Clear();
-				inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
-				inputAndOutputLineOfOperation.Text += calculator.Symbol;
+				inputAndOutputLineOfResult.Text = "NoNumber";
 			}
 
-			calculator.IsOperationPressedEarly = true;
+			calculator.Percent(resultOfPercent);
+			inputAndOutputLineOfResult.Text = calculator.FirstNumber.ToString();
+			inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
+			count--;
 		}
 
 		private void RemoveButton_Click(object sender, EventArgs e)
