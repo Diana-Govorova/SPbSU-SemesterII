@@ -73,12 +73,12 @@ namespace Task1
 		[Test]
 		public void PercentTest()
 		{
-			calculator.Symbol = '%';
+			double resultOfPercent = 0;
 			calculator.FirstNumber = 12;
 
-			calculator.Operation();
+			calculator.Percent(resultOfPercent);
 
-			Assert.AreEqual(0.12, calculator.FirstNumber);
+			Assert.AreEqual(0.12, calculator.FirstNumber, 0.0000001);
 		}
 
 		[Test]
