@@ -223,7 +223,7 @@ namespace Task1
 			{
 				inputAndOutputLineOfResult.Text = "NoNumber";
 			}
-
+			 
 			if (calculator.FirstNumber == 0)
 			{
 				inputAndOutputLineOfResult.Clear();
