@@ -67,6 +67,7 @@ namespace Task2
 		private void ClockFace()
 		{
 			graphics = Graphics.FromImage(bitmap);
+
 			graphics.DrawEllipse(new Pen(Color.Black, 1f), 0, 0, width, height);
 
 			graphics.DrawString("12", new Font("Arial", 12), Brushes.Black, new PointF(140, 2));
