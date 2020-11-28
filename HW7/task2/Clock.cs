@@ -125,6 +125,7 @@ namespace Task2
 				coordinate.xCoordinate = centerCoordinate.xCoordinate - (int)(handLength * -Math.Sin(Math.PI * value / 180));
 				coordinate.yCoordinate = centerCoordinate.yCoordinate - (int)(handLength * Math.Cos(Math.PI * value / 180));
 			}
+
 			return coordinate;
 		}
 
@@ -150,6 +151,7 @@ namespace Task2
 				coordinate.xCoordinate = centerCoordinate.xCoordinate - (int)(handLength * -Math.Sin(Math.PI * value / 180));
 				coordinate.yCoordinate = centerCoordinate.yCoordinate - (int)(handLength * Math.Cos(Math.PI * value / 180));
 			}
+
 			return coordinate;
 		}
 	}
