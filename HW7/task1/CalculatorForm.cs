@@ -67,28 +67,55 @@ namespace Task1
 
 		private void inputSymbolButton_Click(object sender, EventArgs e)
 		{
-			if (inputAndOutputLineOfResult.Text.Length == 0)
+			calculator.IsContainDot = false;
+
+			if (inputAndOutputLineOfResult.Text.Length == 0 && inputAndOutputLineOfOperation.Text.Length == 0)
 			{
 				return;
 			}
 
-			double resultOfPercent = 0;
-			int count = 0;
-
-			try
+			if (calculator.IsEqualPressed)
 			{
 				calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
-				count++;
-			}
-			catch
-			{
-				inputAndOutputLineOfResult.Text = "NoNumber";
+				inputAndOutputLineOfOperation.Text += calculator.FirstNumber;
+				calculator.IsEqualPressed = false;
 			}
 
-			calculator.Percent(resultOfPercent);
-			inputAndOutputLineOfResult.Text = calculator.FirstNumber.ToString();
-			inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
-			count--;
+			if (!calculator.IsOperationPressedEarly)
+			{
+				try
+				{
+					calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
+					inputAndOutputLineOfResult.Clear();
+				}
+				catch
+				{
+					inputAndOutputLineOfResult.Text = "IncorrectInput";
+				}
+
+				calculator.Symbol = (sender as Button).Text[0];
+				inputAndOutputLineOfOperation.Text += calculator.Symbol;
+			}
+			else
+			{
+				try
+				{
+					calculator.SecondNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
+					inputAndOutputLineOfResult.Clear();
+				}
+				catch
+				{
+					inputAndOutputLineOfResult.Text = "IncorrectInput";
+				}
+
+				Operation();
+				calculator.Symbol = (sender as Button).Text[0];
+				inputAndOutputLineOfResult.Clear();
+				inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
+				inputAndOutputLineOfOperation.Text += calculator.Symbol;
+			}
+
+			calculator.IsOperationPressedEarly = true;
 		}
 
 		private void RemoveButton_Click(object sender, EventArgs e)
@@ -199,46 +226,6 @@ namespace Task1
 			}
 		}
 
-		private void DivisedOfOneButton_Click(object sender, EventArgs e)
-		{
-			if (inputAndOutputLineOfResult.Text.Length == 0)
-			{
-				return;
-			}
-
-			if ((calculator.FirstNumber == 0) || (calculator.SecondNumber == 0))
-			{
-				return;
-			}
-
-			double resultDivisedOfOne = 0;
-			int count = 0;
-
-			try
-			{
-				calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
-				count++;
-			}
-			catch
-			{
-				inputAndOutputLineOfResult.Text = "NoNumber";
-			}
-			 
-			if (calculator.FirstNumber == 0)
-			{
-				inputAndOutputLineOfResult.Clear();
-				inputAndOutputLineOfResult.Text += "0";
-				count--;
-			}
-			else
-			{
-				calculator.DivisedOfOne(resultDivisedOfOne);
-				inputAndOutputLineOfResult.Text = calculator.FirstNumber.ToString();
-				inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
-				count--;
-			}
-		}
-
 		private void textBox1_TextChanged(object sender, EventArgs e)
 		{
 			inputAndOutputLineOfOperation.TextAlign = HorizontalAlignment.Right;
@@ -261,6 +248,43 @@ namespace Task1
 					inputAndOutputLineOfResult.Text += (sender as Button).Text;
 					inputAndOutputLineOfOperation.Text += (sender as Button).Text;
 					calculator.IsContainDot = true;
+				}
+			}
+		}
+
+		private void DivisedOfOneButton_Click(object sender, EventArgs e)
+		{
+			{
+				if (inputAndOutputLineOfResult.Text.Length == 0)
+				{
+					return;
+				}
+
+				double resultDivisedOfOne = 0;
+				int count = 0;
+
+				try
+				{
+					calculator.FirstNumber = Convert.ToDouble(inputAndOutputLineOfResult.Text);
+					count++;
+				}
+				catch
+				{
+					inputAndOutputLineOfResult.Text = "NoNumber";
+				}
+
+				if (calculator.FirstNumber == 0)
+				{
+					inputAndOutputLineOfResult.Clear();
+					inputAndOutputLineOfResult.Text += "0";
+					count--;
+				}
+				else
+				{
+					calculator.DivisedOfOne(resultDivisedOfOne);
+					inputAndOutputLineOfResult.Text = calculator.FirstNumber.ToString();
+					inputAndOutputLineOfOperation.Text = calculator.FirstNumber.ToString();
+					count--;
 				}
 			}
 		}

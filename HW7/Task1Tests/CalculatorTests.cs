@@ -73,12 +73,13 @@ namespace Task1
 		[Test]
 		public void PercentTest()
 		{
-			double resultOfPercent = 0;
-			calculator.FirstNumber = 12;
+			calculator.Symbol = '%';
+			calculator.FirstNumber = 5;
+			calculator.SecondNumber = 8;
 
-			calculator.Percent(resultOfPercent);
+			calculator.Operation();
 
-			Assert.AreEqual(0.12, calculator.FirstNumber, 0.0000001);
+			Assert.AreEqual(0.4, calculator.FirstNumber, 0.0001);
 		}
 
 		[Test]
@@ -90,18 +91,17 @@ namespace Task1
 
 			calculator.DivisedOfOne(result);
 
-			Assert.AreEqual(0.2, calculator.FirstNumber);
+			Assert.AreEqual(0.2, calculator.FirstNumber, 0.0000001);
 		}
 
 		[Test]
 		public void DivisionOfOneTest()
 		{
+			double result = 0;
 			calculator.FirstNumber = 5;
+			calculator.DivisedOfOne(result);
 
-			calculator.Remove();
-
-			Assert.AreEqual(0, calculator.FirstNumber);
-			Assert.AreEqual(0, calculator.SecondNumber);
+			Assert.AreEqual(0.2, calculator.FirstNumber, 0.001);
 		}
 	}
 }

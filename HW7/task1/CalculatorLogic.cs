@@ -47,10 +47,14 @@ namespace Task1
 						result = FirstNumber / SecondNumber;
 						break;
 					}
+				case '%':
+					{
+						result = FirstNumber * SecondNumber / 100;
+						break;
+					}
 			}
 			FirstNumber = result;
 		}
-
 
 		public void Remove()
 		{
@@ -68,12 +72,6 @@ namespace Task1
 		{
 			resultDivisedOfOne = 1 / FirstNumber;
 			FirstNumber = resultDivisedOfOne;
-		}
-
-		public void Percent(double resultOfPercent)
-		{
-			resultOfPercent = FirstNumber / 100;
-			FirstNumber = resultOfPercent;
 		}
 	}
 }

@@ -50,8 +50,8 @@
 			this.buttonOppositeSign = new System.Windows.Forms.Button();
 			this.buttonNumberFour = new System.Windows.Forms.Button();
 			this.buttonErase = new System.Windows.Forms.Button();
-			this.buttonSymbolDividedByOne = new System.Windows.Forms.Button();
 			this.inputAndOutputLineOfOperation = new System.Windows.Forms.TextBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonSymbolDeleteCharacter
@@ -319,18 +319,6 @@
 			this.buttonErase.UseVisualStyleBackColor = true;
 			this.buttonErase.Click += new System.EventHandler(this.arrowButton_Click);
 			// 
-			// buttonSymbolDividedByOne
-			// 
-			this.buttonSymbolDividedByOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonSymbolDividedByOne.Location = new System.Drawing.Point(20, 89);
-			this.buttonSymbolDividedByOne.Margin = new System.Windows.Forms.Padding(2);
-			this.buttonSymbolDividedByOne.Name = "buttonSymbolDividedByOne";
-			this.buttonSymbolDividedByOne.Size = new System.Drawing.Size(61, 56);
-			this.buttonSymbolDividedByOne.TabIndex = 26;
-			this.buttonSymbolDividedByOne.Text = "1/x";
-			this.buttonSymbolDividedByOne.UseVisualStyleBackColor = true;
-			this.buttonSymbolDividedByOne.Click += new System.EventHandler(this.DivisedOfOneButton_Click);
-			// 
 			// inputAndOutputLineOfOperation
 			// 
 			this.inputAndOutputLineOfOperation.Location = new System.Drawing.Point(20, 55);
@@ -342,14 +330,26 @@
 			this.inputAndOutputLineOfOperation.TabIndex = 27;
 			this.inputAndOutputLineOfOperation.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
+			// button1
+			// 
+			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button1.Location = new System.Drawing.Point(20, 88);
+			this.button1.Margin = new System.Windows.Forms.Padding(2);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(61, 59);
+			this.button1.TabIndex = 28;
+			this.button1.Text = "1/x";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.DivisedOfOneButton_Click);
+			// 
 			// CalculatorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(355, 421);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.inputAndOutputLineOfOperation);
-			this.Controls.Add(this.buttonSymbolDividedByOne);
 			this.Controls.Add(this.buttonSymbolRoot);
 			this.Controls.Add(this.buttonOppositeSign);
 			this.Controls.Add(this.buttonNumberFour);
@@ -410,7 +410,7 @@
 		private System.Windows.Forms.Button buttonOppositeSign;
 		private System.Windows.Forms.Button buttonNumberFour;
 		private System.Windows.Forms.Button buttonErase;
-		private System.Windows.Forms.Button buttonSymbolDividedByOne;
 		private System.Windows.Forms.TextBox inputAndOutputLineOfOperation;
+		private System.Windows.Forms.Button button1;
 	}
 }
