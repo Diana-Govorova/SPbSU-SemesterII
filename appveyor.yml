@@ -12,9 +12,9 @@ configuration: Debug
 
 # MSBuild settings
 build:
-  project: FinalTest1\TicTacToe.sln
+  project: FinalTest1\TicTacToe\TicTacToe.sln
   verbosity: quiet
 
 # Execute script before build
 before_build:
- - nuget restore FinalTest1\TicTacToe.sln
+ - nuget restore FinalTest1\TicTacToe\TicTacToe.sln
